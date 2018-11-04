@@ -1,3 +1,22 @@
+const users = {
+  '345345dafasdf': {
+    name: 'Martin Kong',
+    color: 'tomato'
+  },
+  'adf89dsaf980809df': {
+    name: 'Mihir Mathur',
+    color: 'teal'
+  },
+  'gfg09h8dfs0g98df09g': {
+    name: 'Hao Nguyen',
+    color: 'turquoise'
+  },
+  '908fdsg09dfg809': {
+    name: 'Cody Ley-Han',
+    color: 'forestGreen'
+  }
+}
+
 const tasks = [
   {
     id: '3124lk1234',
@@ -5,10 +24,10 @@ const tasks = [
     schedule: 'As needed',
     description: 'Take out the trash and make sure that you put a new bag in the thing, also don\'t throw recyclables in the trash',
     currentQueue: [
-      'Martin Kong',
-      'Mihir Mathur',
-      'Hao Nguyen',
-      'Cody Ley-Han',
+      '345345dafasdf',
+      'adf89dsaf980809df',
+      'gfg09h8dfs0g98df09g',
+      '908fdsg09dfg809',
     ]
   },
   {
@@ -17,10 +36,10 @@ const tasks = [
     schedule: 'Daily',
     description: 'Just grab the mail and put it on the table when you get it',
     currentQueue: [
-      'Cody Ley-Han',
-      'Mihir Mathur',
-      'Hao Nguyen',
-      'Martin Kong',
+      '908fdsg09dfg809',
+      'adf89dsaf980809df',
+      'gfg09h8dfs0g98df09g',
+      '345345dafasdf',
     ]
   },
   {
@@ -29,10 +48,10 @@ const tasks = [
     description: 'Make sure to do a good job so it doesn\'t get all nasty',
     schedule: 'Monthly',
     currentQueue: [
-      'Hao Nguyen',
-      'Cody Ley-Han',
-      'Martin Kong',
-      'Mihir Mathur',
+      'gfg09h8dfs0g98df09g',
+      '908fdsg09dfg809',
+      '345345dafasdf',
+      'adf89dsaf980809df',
     ]
   },
   {
@@ -41,10 +60,10 @@ const tasks = [
     description: 'The forms are in the closet if we need something done, hopefully not.  This also includes being there when someone comes',
     schedule: 'As needed',
     currentQueue: [
-      'Cody Ley-Han',
-      'Martin Kong',
-      'Mihir Mathur',
-      'Hao Nguyen',
+      '908fdsg09dfg809',
+      '345345dafasdf',
+      'adf89dsaf980809df',
+      'gfg09h8dfs0g98df09g',
     ]
   },
   {
@@ -53,10 +72,10 @@ const tasks = [
     schedule: 'Biweekly',
     description: 'Pretty easy just make sure to clean out the thing after you\re done',
     currentQueue: [
-      'Cody Ley-Han',
-      'Martin Kong',
-      'Mihir Mathur',
-      'Hao Nguyen',
+      '908fdsg09dfg809',
+      '345345dafasdf',
+      'adf89dsaf980809df',
+      'gfg09h8dfs0g98df09g',
     ]
   },
   {
@@ -65,10 +84,10 @@ const tasks = [
     description: 'Use the chlorox wipes under the sink',
     schedule: 'Daily',
     currentQueue: [
-      'Cody Ley-Han',
-      'Martin Kong',
-      'Mihir Mathur',
-      'Hao Nguyen',
+      '908fdsg09dfg809',
+      '345345dafasdf',
+      'adf89dsaf980809df',
+      'gfg09h8dfs0g98df09g',
     ]
   },
   {
@@ -77,15 +96,16 @@ const tasks = [
     schedule: 'Weekly',
     description: 'Has to be put out every week by 5AM Monday morning',
     currentQueue: [
-      'Cody Ley-Han',
-      'Martin Kong',
-      'Mihir Mathur',
-      'Hao Nguyen',
+      '908fdsg09dfg809',
+      '345345dafasdf',
+      'adf89dsaf980809df',
+      'gfg09h8dfs0g98df09g',
     ]
   }
 ]
 
 
 export default {
+  users,
   tasks
 }

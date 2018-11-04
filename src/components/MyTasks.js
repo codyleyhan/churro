@@ -9,9 +9,9 @@ class MyTasks extends Component {
   render() {
     const tasks = store.tasks.reduce((m, task) => {
       console.log(task.schedule);
-      if (task.currentQueue[0] === 'Cody Ley-Han') {
+      if (task.currentQueue[0] === '908fdsg09dfg809') {
         m[task.schedule].push(task);
-      } else if (task.currentQueue[1] === 'Cody Ley-Han') {
+      } else if (task.currentQueue[1] === '908fdsg09dfg809') {
         m["Coming up"].push(task);
       }
       
