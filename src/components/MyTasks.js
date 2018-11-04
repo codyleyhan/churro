@@ -1,26 +1,40 @@
 import React, { Component } from 'react';
 
-import logo from '../logo.svg';
-import '../styles/Main.scss';
+import TaskCard from './TaskCard';
+
+import store from '../store';
+import '../styles/MyTasks.scss';
 
 class MyTasks extends Component {
   render() {
+    const tasks = store.tasks.reduce((m, task) => {
+      console.log(task.schedule);
+      if (task.currentQueue[0] === 'Cody Ley-Han') {
+        m[task.schedule].push(task);
+      } else if (task.currentQueue[1] === 'Cody Ley-Han') {
+        m["Coming up"].push(task);
+      }
+      
+      return m;
+    }, {
+      "Daily": [],
+      "Weekly": [],
+      "Biweekly": [],
+      "Monthly": [],
+      "As needed": [],
+      "Coming up": [],
+    });
+
+    const cards = Object.entries(tasks).map(kv => {
+      return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]}/>)
+    })
+
     return (
       <div className="MyTasks">
-        <header className="MyTasks-header">
-          <img src={logo} className="MyTasks-logo" alt="logo" />
-          <p>
-            Edit <code>src/MyTasks.js</code> and save to reload.
-          </p>
-          <a
-            className="MyTasks-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>The CSS Slayers</h1>
+        <h2>My Tasks</h2>
+        
+        {cards}
       </div>
     );
   }

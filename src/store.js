@@ -17,9 +17,9 @@ const tasks = [
     schedule: 'Daily',
     description: 'Just grab the mail and put it on the table when you get it',
     currentQueue: [
+      'Cody Ley-Han',
       'Mihir Mathur',
       'Hao Nguyen',
-      'Cody Ley-Han',
       'Martin Kong',
     ]
   },

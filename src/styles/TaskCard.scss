@@ -1,0 +1,48 @@
+@import 'colors';
+
+.task-card {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+
+  .task-card-title {
+    margin-top: 20px;
+    width: 15%;
+  }
+
+  .task-card-list {
+    vertical-align:middle;
+    margin: 10px;
+    background-color: $grey;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    list-style-type: none;
+    padding: 20px;
+    width: 85%;
+  }
+
+  .task-card-item {
+    margin: 12px 15px;
+    border-bottom: 1px solid transparentize($text-color, 0.8);
+
+    .task-card-check {
+      font-size: 2em;
+      margin-right: 10px;
+      height: 2.5em;
+      color: transparentize($text-color, 0.6);
+    }
+
+    .task-card-name {
+      float: right;
+      font-size:1em;
+      width:2.5em;
+      height:2.5em;
+      line-height:2.5em;
+      text-align:center;
+      border-radius:50%;
+      background:tomato;
+      vertical-align:middle;
+      margin-right:1em;
+      color:white;
+    }
+  }
+}
