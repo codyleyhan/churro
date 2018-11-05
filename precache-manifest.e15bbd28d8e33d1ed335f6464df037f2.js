@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "ed21533702d38d7d5ff4",
-    "url": "/churro/static/css/main.2d17ea0d.chunk.css"
+    "revision": "1e3fc448d16b966d8a5e",
+    "url": "/churro/static/css/main.c4c1fda0.chunk.css"
   },
   {
-    "revision": "ed21533702d38d7d5ff4",
-    "url": "/churro/static/js/main.ed215337.chunk.js"
+    "revision": "1e3fc448d16b966d8a5e",
+    "url": "/churro/static/js/main.1e3fc448.chunk.js"
   },
   {
-    "revision": "711bb38a7ebec8ef12d1",
-    "url": "/churro/static/js/1.711bb38a.chunk.js"
+    "revision": "b5c9fefa31dce5fa1c1a",
+    "url": "/churro/static/js/1.b5c9fefa.chunk.js"
   },
   {
     "revision": "cdbcaea7b8b41fad02d8",
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/churro/static/media/pattern.0d1a0be5.svg"
   },
   {
-    "revision": "7b99bca180fac18ad45ada3861d34322",
+    "revision": "39a920e4ccfa02e8a63b4810144e239e",
     "url": "/churro/index.html"
   }
 ];
