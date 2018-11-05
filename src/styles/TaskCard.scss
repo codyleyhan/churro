@@ -35,14 +35,13 @@
       float: right;
 
       i {
-        font-size:1em;
+        font-size: 1.5em;
+        vertical-align: middle;
       }
 
       .task-card-focus-button {
         color: $text-color;
         text-decoration: none;
-        font-size:1em;
-        vertical-align:middle;
       }
     }
   }
