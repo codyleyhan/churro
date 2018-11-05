@@ -1,5 +1,31 @@
+@import 'colors';
+@import 'fonts';
+
 .Main {
   text-align: center;
+  &:before {
+    content:"";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url("../img/pattern.svg") -15% -15% no-repeat;
+    background-size: 25%;
+    z-index: -100;
+  }
+
+  &:after {
+    content:"";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url("../img/pattern.svg") 110% 125% no-repeat;
+    background-size: 25%;
+    z-index: -100;
+  }
 }
 
 .Main-logo {
@@ -22,6 +48,53 @@
   color: #61dafb;
 }
 
+.container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  
+  &:before {
+    content:"";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url(../img/red_rect.svg) 0% 100% no-repeat;
+    background-size: 30%;
+    z-index: -100;
+  }
+
+  &:after {
+    content:"";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url(../img/blue_rect.svg) 100% 0% no-repeat;
+    background-size: 30%;
+    z-index: -100;
+  }
+
+  .button-container {
+    margin-top: 20px;
+  }
+}
+
+.welcome-header {
+  font-family: $font-body;
+  font-weight: 900;
+}
+
+.welcome-subheader {
+  font-family: $font-body;
+  font-weight: 400;
+  margin: 0;
+  border-top: 2px dashed $red;
+  border-bottom: 2px dashed $red;
+  padding: 10px;
+}
+
 @keyframes Main-logo-spin {
   from {
     transform: rotate(0deg);
@@ -29,4 +102,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+
+@keyframes shad-anim {
+  0% {background-position: 0 0}
+  0% {background-position: 100% -100%}
 }
