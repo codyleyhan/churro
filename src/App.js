@@ -7,7 +7,7 @@ import MyTasks from './components/MyTasks';
 import './styles/index.scss';
 
 const App = () => (
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <main>
       <Route path="/" exact component={Main} />
       <Route path="/tasks" exact component={MyTasks} />
