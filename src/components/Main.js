@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
-
-import Link from './Link';
-import logo from '../logo.svg';
 import '../styles/Main.scss';
 
 class Main extends Component {
