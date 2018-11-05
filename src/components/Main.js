@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+import Link from './Link';
 import logo from '../logo.svg';
 import '../styles/Main.scss';
 
@@ -12,7 +14,7 @@ class Main extends Component {
           <h4 className="welcome-subheader">The New Way to Manage Chores</h4>
           <div className="button-container">
             <button className="button button--new-group">START A NEW GROUP</button>
-            <button className="button button--login">LOGIN</button>
+            <Link to="/tasks"><button className="button button--login">LOGIN</button></Link>
           </div>
         </div>
       </div>
