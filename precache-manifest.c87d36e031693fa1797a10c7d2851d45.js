@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "f44225788d1512a49e4a",
+    "revision": "ed21533702d38d7d5ff4",
     "url": "/churro/static/css/main.2d17ea0d.chunk.css"
   },
   {
-    "revision": "f44225788d1512a49e4a",
-    "url": "/churro/static/js/main.f4422578.chunk.js"
+    "revision": "ed21533702d38d7d5ff4",
+    "url": "/churro/static/js/main.ed215337.chunk.js"
   },
   {
     "revision": "711bb38a7ebec8ef12d1",
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/churro/static/media/pattern.0d1a0be5.svg"
   },
   {
-    "revision": "dcd123bfb93904cb50ff068bcc24361e",
+    "revision": "7b99bca180fac18ad45ada3861d34322",
     "url": "/churro/index.html"
   }
 ];
