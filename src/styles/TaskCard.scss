@@ -14,7 +14,7 @@
     vertical-align:middle;
     margin: 10px;
     background-color: $grey;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: $card-shadow;
     list-style-type: none;
     padding: 20px;
     width: 85%;
@@ -28,21 +28,22 @@
       font-size: 2em;
       margin-right: 10px;
       height: 2.5em;
-      color: transparentize($text-color, 0.6);
+      color: transparentize($text-color, 0.8)
     }
 
-    .task-card-name {
+    .task-card-right {
       float: right;
-      font-size:1em;
-      width:2.5em;
-      height:2.5em;
-      line-height:2.5em;
-      text-align:center;
-      border-radius:50%;
-      background:tomato;
-      vertical-align:middle;
-      margin-right:1em;
-      color:white;
+
+      i {
+        font-size:1em;
+      }
+
+      .task-card-focus-button {
+        color: $text-color;
+        text-decoration: none;
+        font-size:1em;
+        vertical-align:middle;
+      }
     }
   }
 }

@@ -11,6 +11,7 @@ const App = () => (
     <main>
       <Route path="/" exact component={Main} />
       <Route path="/tasks" exact component={MyTasks} />
+      <Route path="/tasks/:id" component={MyTasks} />
     </main>    
   </Router>
 );

@@ -32,7 +32,7 @@ const tasks = [
   },
   {
     id: '432jadffia0d9f',
-    name: 'Get mail',
+    name: 'Get the mail',
     schedule: 'Daily',
     description: 'Just grab the mail and put it on the table when you get it',
     currentQueue: [
@@ -67,7 +67,7 @@ const tasks = [
     ]
   },
   {
-    id: 'a90f8sad9fas',
+    id: 'dsf9sdaf0asd89f9asdf',
     name: 'Vaccum carpet',
     schedule: 'Biweekly',
     description: 'Pretty easy just make sure to clean out the thing after you\re done',

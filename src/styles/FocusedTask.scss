@@ -1,0 +1,64 @@
+@import 'colors';
+
+.focused-task-card {
+  width: 45%;
+  margin-left: 5%;
+
+  .focused-task-content {
+    background-color: $grey;
+    box-shadow: $card-shadow;
+    margin: 10px;
+    padding: 20px;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .focused-task-queue {
+      list-style-type: none;
+      padding-left: 0;
+
+
+      .focused-task-queue-item {
+        margin: 0;
+        margin-bottom: 5px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid transparentize($text-color, 0.8);
+      }
+    }
+
+    .focused-task-button {
+      border: 0;
+      border-radius: 0;
+      padding: 10px;
+      font-size: 1em;
+      box-shadow: $card-shadow;
+      cursor: pointer;
+    }
+
+    .focused-task-close {
+      text-align: right;
+      font-size: 1.5em;
+      margin: 0;
+      margin-bottom: -1.5em;
+      padding: 0;
+
+
+      .focused-task-close-button {
+        color: $text-color;
+        text-decoration: none;
+      }
+    }
+
+    .focused-task-button-complete {
+      background-color: forestgreen;
+      border: 1px solid forestgreen;
+      color: $white;
+      &:hover {
+        color: forestgreen;
+        background-color: $white;
+      }
+    }
+    
+  }
+}
