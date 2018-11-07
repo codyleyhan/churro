@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import store from '../store';
 import CircleInitials from './CircleInitials';
+import CallToActionButton from './CallToActionButton';
 
 import '../styles/FocusedTask.scss'
 
@@ -27,18 +28,15 @@ const FocusedTask = ({ task }) => {
         <header className="focused-task-card-name"> 
           <h2>{task.name}</h2>
         </header>
-
-        <h4>Description</h4>
         <p className="focused-task-card-desc">
           {task.description}
         </p>
 
-        <h4>Current Queue</h4>
         <ul className="focused-task-queue">
           {queue}
         </ul>
 
-        <button className="focused-task-button focused-task-button-complete">Complete Task</button>
+        <CallToActionButton>COMPLETE TASK</CallToActionButton>
       </div>
     </section>
   )

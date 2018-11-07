@@ -1,0 +1,30 @@
+@import 'fonts';
+@import 'colors';
+
+.button {
+  padding: 10px 15px;
+  font-family: $font-body;
+  font-weight: 700;
+  border-radius: 30px;
+  border: 2px solid $purple;
+  background-color: $white;
+  margin: 20px 10px 20px 10px;
+  transition: .2s ease all;
+  text-transform: uppercase;
+
+  &:focus {
+    outline: none;
+  }
+  
+  &:hover {
+    background-color: $purple;
+    color: $white;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  &.button--call-to-action {
+    background-color: $purple;
+    color: $white;
+  }
+}

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import store from '../store';
 
 import '../styles/TaskCard.scss'
-import './CircleInitials';
 import CircleInitials from './CircleInitials';
+
 
 const TaskCard = ({title, tasks}) => {
   if (tasks.length === 0) {
