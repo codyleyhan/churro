@@ -1,0 +1,11 @@
+.NewGroup {
+  .form-title {
+    margin: 0;
+  }
+  .roommates {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

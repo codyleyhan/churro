@@ -23,8 +23,34 @@
     transform: scale(1.1);
   }
 
-  &.button--call-to-action {
+  &--call-to-action {
     background-color: $purple;
     color: $white;
+  }
+
+  &--back {
+    padding: 10px 10px;
+    position: relative;
+    
+    &:before {
+      content: "<";
+      position: absolute;
+      font-size: 14px;
+      left: 30%;
+      top: 0;
+    }
+  }
+
+  &--next {
+    padding: 10px 10px;
+    position: relative;
+    
+    &:before {
+      content: ">";
+      position: absolute;
+      font-size: 14px;
+      left: 30%;
+      top: 0;
+    }
   }
 }

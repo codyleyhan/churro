@@ -1,0 +1,17 @@
+@import 'colors';
+@import 'fonts';
+
+.input {
+  padding: 10px;
+  border: 0;
+  border-bottom: 1px solid $red;
+  width: 350px;
+
+  font-family: $font-body;
+  font-weight: 300;
+  font-size: $font-size-input;
+
+  &:focus {
+    outline: none;
+  }
+}

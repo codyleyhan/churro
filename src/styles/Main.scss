@@ -79,6 +79,13 @@
   .button-container {
     margin-top: 20px;
   }
+
+  #landing {
+    position: relative;
+    opacity: 1;
+    left: 0%;
+    transition: .5s ease all;
+  }
 }
 
 .welcome-header {
