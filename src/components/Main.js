@@ -14,7 +14,7 @@ class Main extends Component {
     let elem = document.getElementById('landing');
     elem.style.left = "-10%";
     elem.style.opacity = 0;
-    setTimeout(()=>{window.location.href += new_group_route}, 500);
+    // setTimeout(()=>{window.location.href += new_group_route}, 500);
   }
 
   render() {
@@ -25,7 +25,7 @@ class Main extends Component {
             <h2 className="welcome-header">Welcome to Churro!</h2>
             <h4 className="welcome-subheader">The New Way to Manage Chores</h4>
             <div className="button-container">
-              <CallToActionButton onClick={this.transitionOut}>START A NEW GROUP</CallToActionButton>
+              <Link to="/new"><CallToActionButton onClick={this.transitionOut}>START A NEW GROUP</CallToActionButton></Link>
               <Link to="/tasks"><Button>LOGIN</Button></Link>
             </div>
           </div>
