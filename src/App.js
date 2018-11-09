@@ -13,7 +13,8 @@ const App = () => (
       <Route path="/" exact component={Main} />
       <Route path="/new" exact component={NewGroup} />
       <Route path="/tasks" exact component={MyTasks} />
-      <Route path="/tasks/:id" component={MyTasks} />
+      <Route path="/tasks/:id" exact component={MyTasks} />
+      <Route path="/tasks/:id/complete" component={MyTasks} />
     </main>    
   </Router>
 );

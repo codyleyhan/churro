@@ -7,18 +7,26 @@ import '../styles/TaskCard.scss'
 import CircleInitials from './CircleInitials';
 
 
-const TaskCard = ({title, tasks}) => {
+const TaskCard = ({title, tasks, complete, completed_task}) => {
   if (tasks.length === 0) {
     return null;
   }
 
   const items = tasks.map(task => {
     const user = store.users[task.currentQueue[0]];
+    
+    let taskCardID;
+
+    if (complete && completed_task.id == task.id) {
+      taskCardID = 'completed';
+    } else {
+      taskCardID = '';
+    }
 
     return (
       <li key={task.id} className="task-card-item">
         <span>
-          <span className="task-card-check"><i className="far fa-check-circle"></i></span>
+          <span id={taskCardID} className="task-card-check"><i className="far fa-check-circle"></i></span>
           {task.name} 
           <span className="task-card-right">
             <CircleInitials name={user.name} color={user.color} />
