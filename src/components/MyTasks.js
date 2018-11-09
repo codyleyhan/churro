@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import TaskCard from './TaskCard';
 import FocusedTask from './FocusedTask';
+import NavBar from './NavBar';
 
 import store from '../store';
 import '../styles/MyTasks.scss';
@@ -42,9 +43,12 @@ class MyTasks extends Component {
 
     console.log(focusedTask);
     return (
+      <div>
+      <NavBar > lit </NavBar>
       <div className="MyTasks">
-        <h1>The CSS Slayers</h1>
-        <h2>My Tasks</h2>
+  
+        <h1 className="center">The CSS Slayers</h1>
+        <h2 className="center">My Tasks</h2>
         
         <section className="my-tasks-columns">
          <div className="my-tasks-cards">
@@ -52,6 +56,7 @@ class MyTasks extends Component {
          </div>
          {focusedTask && (<FocusedTask task={focusedTask} complete={complete} />)}
         </section>
+      </div>
       </div>
     );
   }
