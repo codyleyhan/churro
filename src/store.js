@@ -28,7 +28,10 @@ const tasks = [
       'adf89dsaf980809df',
       'gfg09h8dfs0g98df09g',
       '908fdsg09dfg809',
-    ]
+    ],
+    currentPosition: 0,
+    completed: false,
+    confirmed: false
   },
   {
     id: '432jadffia0d9f',
@@ -40,7 +43,10 @@ const tasks = [
       'adf89dsaf980809df',
       'gfg09h8dfs0g98df09g',
       '345345dafasdf',
-    ]
+    ],
+    currentPosition: 0,
+    completed: false,
+    confirmed: false
   },
   {
     id: 'fasdf89sadf8',
@@ -52,7 +58,10 @@ const tasks = [
       '908fdsg09dfg809',
       '345345dafasdf',
       'adf89dsaf980809df',
-    ]
+    ],
+    currentPosition: 0,
+    completed: false,
+    confirmed: false
   },
   {
     id: 'a90f8sad9fas',
@@ -64,7 +73,10 @@ const tasks = [
       '345345dafasdf',
       'adf89dsaf980809df',
       'gfg09h8dfs0g98df09g',
-    ]
+    ],
+    currentPosition: 0,
+    completed: false,
+    confirmed: false
   },
   {
     id: 'dsf9sdaf0asd89f9asdf',
@@ -76,7 +88,10 @@ const tasks = [
       '345345dafasdf',
       'adf89dsaf980809df',
       'gfg09h8dfs0g98df09g',
-    ]
+    ],
+    currentPosition: 0,
+    completed: false,
+    confirmed: false
   },
   {
     id: 'jkll2k5j4l3k5',
@@ -88,7 +103,10 @@ const tasks = [
       '345345dafasdf',
       'adf89dsaf980809df',
       'gfg09h8dfs0g98df09g',
-    ]
+    ],
+    currentPosition: 0,
+    completed: false,
+    confirmed: false
   },
   {
     id: 'h8439582435',
@@ -100,7 +118,10 @@ const tasks = [
       '345345dafasdf',
       'adf89dsaf980809df',
       'gfg09h8dfs0g98df09g',
-    ]
+    ],
+    currentPosition: 0,
+    completed: false,
+    confirmed: false
   }
 ]
 

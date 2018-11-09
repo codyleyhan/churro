@@ -33,8 +33,11 @@ class MyTasks extends Component {
       "Coming up": [],
     });
 
+    let complete = this.props.match.url.includes('complete');
+
     const cards = Object.entries(tasks).map(kv => {
-      return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]}/>)
+      console.log(kv);
+      return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]} complete={complete} completed_task={focusedTask} />)
     })
 
     console.log(focusedTask);
@@ -47,7 +50,7 @@ class MyTasks extends Component {
          <div className="my-tasks-cards">
           {cards}
          </div>
-         {focusedTask && (<FocusedTask task={focusedTask} />)}
+         {focusedTask && (<FocusedTask task={focusedTask} complete={complete} />)}
         </section>
       </div>
     );

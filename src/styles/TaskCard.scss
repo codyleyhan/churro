@@ -1,5 +1,9 @@
 @import 'colors';
 
+#completed {
+  color: green;
+}
+
 .task-card {
   display: flex;
   flex-direction: row;

@@ -7,8 +7,8 @@ import CallToActionButton from './CallToActionButton';
 
 import '../styles/FocusedTask.scss'
 
-const FocusedTask = ({ task }) => {
-  const queue = task.currentQueue.map(id => {
+const FocusedTask = ({ task, complete }) => {
+  let queue = task.currentQueue.map(id => {
     const user = store.users[id];
 
     return (
@@ -18,6 +18,11 @@ const FocusedTask = ({ task }) => {
     )
   });
 
+  if (complete) {
+    let first = queue[0];
+    queue = queue.slice(1, queue.length);
+    queue.push(first);
+  }
 
   return (
     <section className="focused-task-card">
@@ -36,7 +41,7 @@ const FocusedTask = ({ task }) => {
           {queue}
         </ul>
 
-        <CallToActionButton>COMPLETE TASK</CallToActionButton>
+        <Link to={"/tasks/" + task.id + "/complete"}><CallToActionButton>COMPLETE TASK</CallToActionButton></Link>
       </div>
     </section>
   )
