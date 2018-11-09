@@ -15,18 +15,21 @@ const NavBar = ({team}) => {
         >
           <NavLink
             exact
+            className="link"
             to={"/"}
           >
             HOME
           </NavLink>
           <NavLink
             exact
+            className="link"
             to={"/"}
           >
             INFO
           </NavLink>
           <NavLink
             exact
+            className="link"
             to={"/tasks"}
           >
             TASKS
