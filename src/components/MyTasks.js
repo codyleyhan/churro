@@ -5,43 +5,79 @@ import FocusedTask from './FocusedTask';
 import NavBar from './NavBar';
 
 import store from '../store';
+import firebase from './../Firebase.js';
 import '../styles/MyTasks.scss';
 
 class MyTasks extends Component {
-  render() {
-    let focusedTask;
 
-    const tasks = store.tasks.reduce((m, task) => {
-      if (this.props.match.params.id) {
-        if (task.id === this.props.match.params.id) {
-          focusedTask = task;
-        }
-      }
+  constructor(props) {
+    super(props);
+    this.state = {data: null};
 
-      if (task.currentQueue[0] === '908fdsg09dfg809') {
-        m[task.schedule].push(task);
-      } else if (task.currentQueue[1] === '908fdsg09dfg809') {
-        m["Coming up"].push(task);
-      }
-      
-      return m;
-    }, {
-      "Daily": [],
-      "Weekly": [],
-      "Biweekly": [],
-      "Monthly": [],
-      "As needed": [],
-      "Coming up": [],
+    this.readDB = this.readDB.bind(this);
+  }
+
+  componentDidMount() {
+    this.readDB();
+  }
+
+  readDB() {
+    const groups = firebase.database().ref('group');
+    groups.once('value', (snapshot) => {
+      console.log(snapshot.val());
+      this.setState({
+        data: snapshot.val()
+      });
     });
+    console.log(this.state.data);
+  }
 
-    let complete = this.props.match.url.includes('complete');
+  render() {
+    var focusedTask = null;
+    let team = 'CSS_Slayers';
+    if (this.state.data) {
+      console.log(this.state.data[team]);
+    }
 
-    const cards = Object.entries(tasks).map(kv => {
-      console.log(kv);
-      return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]} complete={complete} completed_task={focusedTask} />)
-    })
+    var cards = null;
+    var complete = false;
+    if (this.state.data) {
+      console.log('entered');
+      let team = 'CSS_Slayers';
+      const tasks = this.state.data[team].tasks.reduce((m, task) => {
+        if (this.props.match.params.id) {
+          if (task.id == this.props.match.params.id) {
+            focusedTask = task;
+          }
+        }
 
-    console.log(focusedTask);
+        if (task.current === 0) {
+          m[task.schedule].push(task);
+        } else {
+          m["Coming up"].push(task);
+        }
+        
+        return m;
+      }, {
+        "Daily": [],
+        "Weekly": [],
+        "Biweekly": [],
+        "Monthly": [],
+        "As needed": [],
+        "Coming up": [],
+      });
+      console.log(tasks);
+
+      complete = this.props.match.url.includes('complete');
+
+      cards = Object.entries(tasks).map(kv => {
+        console.log(kv);
+        return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]} complete={complete} completed_task={focusedTask} users={this.state.data[team].users} />)
+      })
+      console.log(cards);
+      console.log(focusedTask);
+    }
+    console.log(cards);
     return (
       <div>
       <NavBar > lit </NavBar>
@@ -54,7 +90,7 @@ class MyTasks extends Component {
          <div className="my-tasks-cards">
           {cards}
          </div>
-         {focusedTask && (<FocusedTask task={focusedTask} complete={complete} />)}
+         {focusedTask && (<FocusedTask task={focusedTask} complete={complete} users={this.state.data[team].users} />)}
         </section>
       </div>
       </div>

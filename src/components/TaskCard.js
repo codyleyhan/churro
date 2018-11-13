@@ -7,13 +7,14 @@ import '../styles/TaskCard.scss'
 import CircleInitials from './CircleInitials';
 
 
-const TaskCard = ({title, tasks, complete, completed_task}) => {
+const TaskCard = ({title, tasks, complete, completed_task, users}) => {
   if (tasks.length === 0) {
     return null;
   }
+  console.log(tasks);
 
   const items = tasks.map(task => {
-    const user = store.users[task.currentQueue[0]];
+    const user = task.current; //store.users[task.currentQueue[0]];
     
     let taskCardID;
 
@@ -29,7 +30,7 @@ const TaskCard = ({title, tasks, complete, completed_task}) => {
           <span id={taskCardID} className="task-card-check"><i className="far fa-check-circle"></i></span>
           {task.name} 
           <span className="task-card-right">
-            <CircleInitials name={user.name} color={user.color} />
+            <CircleInitials name={users[user]} color='turquoise' />
             <Link className="task-card-focus-button" to={"/tasks/" + task.id}><i className="fas fa-angle-right"></i></Link>
           </span>
         </span>
