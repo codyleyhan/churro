@@ -7,16 +7,25 @@ import CallToActionButton from './CallToActionButton';
 
 import '../styles/FocusedTask.scss'
 
-const FocusedTask = ({ task, complete }) => {
-  let queue = task.currentQueue.map(id => {
+const FocusedTask = ({ task, complete, users}) => {
+  /*let queue = users.map(id => {
     const user = store.users[id];
 
     return (
       <li key={id} className="focused-task-queue-item">
-        <span><CircleInitials name={user.name} color={user.color} style={{display: 'inline'}} /> {user.name}</span>
+        <span><CircleInitials name={user.name} color='turquoise' style={{display: 'inline'}} /> {user.name}</span>
       </li>
     )
-  });
+  });*/
+
+  let queue = [];
+  for (var i=task.current; i<users.length; i++) {
+    queue.push(
+      <li key={i} className="focused-task-queue-item">
+        <span><CircleInitials name={users[i%users.length]} color='turquoise' style={{display: 'inline'}} /> {users[i%users.length]}</span>
+      </li>
+    );
+  }
 
   if (complete) {
     let first = queue[0];
