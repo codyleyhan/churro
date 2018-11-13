@@ -1,0 +1,27 @@
+@import "fonts";
+@import "colors";
+
+.chore-button {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  right: 36px;
+  bottom: 36px;
+  border: 2px solid $purple;
+  background-color: $white;
+  border-radius: 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: $purple;
+
+  &:hover {
+    background-color: $purple;
+    color: $white;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
