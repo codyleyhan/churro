@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import TaskCard from './TaskCard';
-import FocusedTask from './FocusedTask';
-import NavBar from './NavBar';
+import TaskCard from "./TaskCard";
+import FocusedTask from "./FocusedTask";
+import NavBar from "./NavBar";
+import AddChoreButton from "./AddChoreButton";
 
 import store from '../store';
 import firebase from './../Firebase.js';
@@ -80,19 +82,19 @@ class MyTasks extends Component {
     console.log(cards);
     return (
       <div>
-      <NavBar > lit </NavBar>
-      <div className="MyTasks">
-  
-        <h1 className="center">The CSS Slayers</h1>
-        <h2 className="center">My Tasks</h2>
-        
-        <section className="my-tasks-columns">
-         <div className="my-tasks-cards">
-          {cards}
-         </div>
-         {focusedTask && (<FocusedTask task={focusedTask} complete={complete} users={this.state.data[team].users} />)}
-        </section>
-      </div>
+        <NavBar />
+        <div className="MyTasks">
+          <h1 className="center">The CSS Slayers</h1>
+          <h2 className="center">My Tasks</h2>
+
+          <section className="my-tasks-columns">
+            <div className="my-tasks-cards">{cards}</div>
+            {focusedTask && (<FocusedTask task={focusedTask} complete={complete} users={this.state.data[team].users} />)}
+          </section>
+        </div>
+        <Link to="/addchore">
+          <AddChoreButton />
+        </Link>
       </div>
     );
   }
