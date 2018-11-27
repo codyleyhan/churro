@@ -13,9 +13,9 @@ const App = () => (
     <main>
       <Route path="/" exact component={Main} />
       <Route path="/new" exact component={NewGroup} />
-      <Route path="/tasks" exact component={MyTasks} />
-      <Route path="/tasks/:id" exact component={MyTasks} />
-      <Route path="/tasks/:id/complete" component={MyTasks} />
+      <Route path="/:group/tasks" exact component={MyTasks} />
+      <Route path="/:group/tasks/:id" exact component={MyTasks} />
+      <Route path="/:group/tasks/:id/complete" component={MyTasks} />
       <Route path="/addchore" exact component={AddChore} />
     </main>
   </Router>

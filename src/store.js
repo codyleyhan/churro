@@ -1,17 +1,67 @@
+import firebase from './Firebase';
+
+class Store {
+  constructor(firebase) {
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    // Disable deprecated features
+    db.settings({
+      timestampsInSnapshots: true
+    });
+    this.db = db.collection('groups');
+    this.group = null;
+  }
+
+  fetchGroup(id) {
+    return this.db.doc(id).get().then((doc) => {
+      if (!doc.exists) {
+        console.log('No group with id of ' + id);
+        return;
+      }
+
+      this.group = doc.data();
+      this.group.id = id;
+      console.log(this.group);
+      return this.group;
+    });
+  }
+
+  getUsersGroups(email) {
+    return this.db.where('users', 'array-contains', email).get().then((doc) => {
+      if (!doc.exists) {
+        console.log('User has no groups with email ' + email);
+        return;
+      }
+      return doc.data();
+    });
+  }
+
+  addGroup(group) {
+    return this.db.add(group).then(doc => {
+      group.id = doc.id;
+      console.log(group);
+      return group;
+    });
+  }
+}
+const store = new Store(firebase);
+
+
 const users = {
-  '345345dafasdf': {
+  'martin@martin.com': {
     name: 'Martin Kong',
     color: 'tomato'
   },
-  'adf89dsaf980809df': {
+  'mihir@mihir.com': {
     name: 'Mihir Mathur',
     color: 'teal'
   },
-  'gfg09h8dfs0g98df09g': {
+  'hao@hao.com': {
     name: 'Hao Nguyen',
     color: 'turquoise'
   },
-  '908fdsg09dfg809': {
+  'cody@cody.com': {
     name: 'Cody Ley-Han',
     color: 'forestGreen'
   }
@@ -24,10 +74,10 @@ const tasks = [
     schedule: 'As needed',
     description: 'Take out the trash and make sure that you put a new bag in the thing, also don\'t throw recyclables in the trash',
     currentQueue: [
-      '345345dafasdf',
-      'adf89dsaf980809df',
-      'gfg09h8dfs0g98df09g',
-      '908fdsg09dfg809',
+      'martin@martin.com',
+      'mihir@mihir.com',
+      'hao@hao.com',
+      'cody@cody.com',
     ],
     currentPosition: 0,
     completed: false,
@@ -39,10 +89,10 @@ const tasks = [
     schedule: 'Daily',
     description: 'Just grab the mail and put it on the table when you get it',
     currentQueue: [
-      '908fdsg09dfg809',
-      'adf89dsaf980809df',
-      'gfg09h8dfs0g98df09g',
-      '345345dafasdf',
+      'cody@cody.com',
+      'mihir@mihir.com',
+      'hao@hao.com',
+      'martin@martin.com',
     ],
     currentPosition: 0,
     completed: false,
@@ -54,10 +104,10 @@ const tasks = [
     description: 'Make sure to do a good job so it doesn\'t get all nasty',
     schedule: 'Monthly',
     currentQueue: [
-      'gfg09h8dfs0g98df09g',
-      '908fdsg09dfg809',
-      '345345dafasdf',
-      'adf89dsaf980809df',
+      'hao@hao.com',
+      'cody@cody.com',
+      'martin@martin.com',
+      'mihir@mihir.com',
     ],
     currentPosition: 0,
     completed: false,
@@ -69,10 +119,10 @@ const tasks = [
     description: 'The forms are in the closet if we need something done, hopefully not.  This also includes being there when someone comes',
     schedule: 'As needed',
     currentQueue: [
-      '908fdsg09dfg809',
-      '345345dafasdf',
-      'adf89dsaf980809df',
-      'gfg09h8dfs0g98df09g',
+      'cody@cody.com',
+      'martin@martin.com',
+      'mihir@mihir.com',
+      'hao@hao.com',
     ],
     currentPosition: 0,
     completed: false,
@@ -84,10 +134,10 @@ const tasks = [
     schedule: 'Biweekly',
     description: 'Pretty easy just make sure to clean out the thing after you\re done',
     currentQueue: [
-      '908fdsg09dfg809',
-      '345345dafasdf',
-      'adf89dsaf980809df',
-      'gfg09h8dfs0g98df09g',
+      'cody@cody.com',
+      'martin@martin.com',
+      'mihir@mihir.com',
+      'hao@hao.com',
     ],
     currentPosition: 0,
     completed: false,
@@ -99,10 +149,10 @@ const tasks = [
     description: 'Use the chlorox wipes under the sink',
     schedule: 'Daily',
     currentQueue: [
-      '908fdsg09dfg809',
-      '345345dafasdf',
-      'adf89dsaf980809df',
-      'gfg09h8dfs0g98df09g',
+      'cody@cody.com',
+      'martin@martin.com',
+      'mihir@mihir.com',
+      'hao@hao.com',
     ],
     currentPosition: 0,
     completed: false,
@@ -114,10 +164,10 @@ const tasks = [
     schedule: 'Weekly',
     description: 'Has to be put out every week by 5AM Monday morning',
     currentQueue: [
-      '908fdsg09dfg809',
-      '345345dafasdf',
-      'adf89dsaf980809df',
-      'gfg09h8dfs0g98df09g',
+      'cody@cody.com',
+      'martin@martin.com',
+      'mihir@mihir.com',
+      'hao@hao.com',
     ],
     currentPosition: 0,
     completed: false,
@@ -128,5 +178,6 @@ const tasks = [
 
 export default {
   users,
-  tasks
+  tasks,
+  store
 }

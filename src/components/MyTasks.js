@@ -1,95 +1,78 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react"
 
 import TaskCard from "./TaskCard";
 import FocusedTask from "./FocusedTask";
 import NavBar from "./NavBar";
 import AddChoreButton from "./AddChoreButton";
 
-import store from '../store';
-import firebase from './../Firebase.js';
+import groupStore from '../stores/groups';
+import userStore from '../stores/users';
+
 import '../styles/MyTasks.scss';
 
-class MyTasks extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {data: null};
-
-    this.readDB = this.readDB.bind(this);
-  }
-
+const MyTasks = observer(class MyTasks extends Component {
   componentDidMount() {
-    this.readDB();
-  }
-
-  readDB() {
-    const groups = firebase.database().ref('group');
-    groups.once('value', (snapshot) => {
-      console.log(snapshot.val());
-      this.setState({
-        data: snapshot.val()
-      });
-    });
-    console.log(this.state.data);
+    const groupID = this.props.match.params.group;
+    groupStore.get(groupID);
   }
 
   render() {
-    var focusedTask = null;
-    let team = 'CSS_Slayers';
-    if (this.state.data) {
-      console.log(this.state.data[team]);
+    if (groupStore.isFetching) {
+      return (
+        <div>
+        <NavBar />
+        <h1>Loading!</h1>
+        <Link to="/addchore">
+          <AddChoreButton />
+        </Link>
+      </div>
+      )
     }
 
-    var cards = null;
-    var complete = false;
-    if (this.state.data) {
-      console.log('entered');
-      let team = 'CSS_Slayers';
-      const tasks = this.state.data[team].tasks.reduce((m, task) => {
-        if (this.props.match.params.id) {
-          if (task.id == this.props.match.params.id) {
-            focusedTask = task;
-          }
+    let focusedTask;
+    const tasks = groupStore.group.tasks.reduce((m, task) => {
+      if (this.props.match.params.id) {
+        if (task.id === this.props.match.params.id) {
+          focusedTask = task;
         }
+      }
 
-        if (task.current === 0) {
-          m[task.schedule].push(task);
-        } else {
-          m["Coming up"].push(task);
-        }
-        
-        return m;
-      }, {
-        "Daily": [],
-        "Weekly": [],
-        "Biweekly": [],
-        "Monthly": [],
-        "As needed": [],
-        "Coming up": [],
-      });
-      console.log(tasks);
+      if (task.currentQueue[0] === userStore.currentUser.email) {
+        m[task.schedule].push(task);
+      } else if (1 < task.currentQueue.length && task.currentQueue[1] === userStore.currentUser.email) {
+        m["Coming up"].push(task);
+      }
+      
+      return m;
+    }, {
+      "Daily": [],
+      "Weekly": [],
+      "Biweekly": [],
+      "Monthly": [],
+      "As needed": [],
+      "Coming up": [],
+    });
 
-      complete = this.props.match.url.includes('complete');
+    const cards = Object.entries(tasks).map(kv => {
+      return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]} />)
+    });
 
-      cards = Object.entries(tasks).map(kv => {
-        console.log(kv);
-        return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]} complete={complete} completed_task={focusedTask} users={this.state.data[team].users} />)
-      })
-      console.log(cards);
-      console.log(focusedTask);
-    }
-    console.log(cards);
+    const groupID = this.props.match.params.group;
+
     return (
       <div>
         <NavBar />
         <div className="MyTasks">
-          <h1 className="center">The CSS Slayers</h1>
+          <h1 className="center">{groupStore.group.name}</h1>
           <h2 className="center">My Tasks</h2>
 
           <section className="my-tasks-columns">
-            <div className="my-tasks-cards">{cards}</div>
-            {focusedTask && (<FocusedTask task={focusedTask} complete={complete} users={this.state.data[team].users} />)}
+            <div className="my-tasks-cards">
+              {cards}
+            </div>
+            {focusedTask && (<FocusedTask task={focusedTask} closeURL={"/" + groupID + "/tasks"} />)}
           </section>
         </div>
         <Link to="/addchore">
@@ -98,6 +81,6 @@ class MyTasks extends Component {
       </div>
     );
   }
-}
+})
 
 export default MyTasks;

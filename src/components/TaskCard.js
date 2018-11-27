@@ -1,37 +1,24 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import store from '../store';
+import userStore from '../stores/users';
 
 import '../styles/TaskCard.scss'
 import CircleInitials from './CircleInitials';
 
 
-const TaskCard = ({title, tasks, complete, completed_task, users}) => {
-  if (tasks.length === 0) {
-    return null;
-  }
-  console.log(tasks);
-
+const TaskCard = ({ tasks, title }) => {
   const items = tasks.map(task => {
-    const user = task.current; //store.users[task.currentQueue[0]];
+    const user = userStore.users[task.currentQueue[0]];
     
-    let taskCardID;
-
-    if (complete && completed_task.id == task.id) {
-      taskCardID = 'completed';
-    } else {
-      taskCardID = '';
-    }
-
     return (
       <li key={task.id} className="task-card-item">
         <span>
-          <span id={taskCardID} className="task-card-check"><i className="far fa-check-circle"></i></span>
+          <span className="task-card-check"><i className="far fa-check-circle"></i></span>
           {task.name} 
           <span className="task-card-right">
-            <CircleInitials name={users[user].name} color={users[user].color} />
-            <Link className="task-card-focus-button" to={"/tasks/" + task.id}><i className="fas fa-angle-right"></i></Link>
+            <CircleInitials name={user.name} color={user.color} />
+            <Link className="task-card-focus-button" to={"tasks/" + task.id}><i className="fas fa-angle-right"></i></Link>
           </span>
         </span>
       </li>
