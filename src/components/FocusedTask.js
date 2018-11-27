@@ -17,6 +17,10 @@ const FocusedTask = ({ task, closeURL }) => {
     )
   })
 
+  const handleComplete = () => {
+    task.currentQueue.push(task.currentQueue.shift());
+  }
+
   return (
     <section className="focused-task-card">
       <div className="focused-task-content">
@@ -34,7 +38,7 @@ const FocusedTask = ({ task, closeURL }) => {
           {queue}
         </ul>
 
-        <Link to={"/tasks/" + task.id + "/complete"}><CallToActionButton>COMPLETE TASK</CallToActionButton></Link>
+        <CallToActionButton onClick={handleComplete}>COMPLETE TASK</CallToActionButton>
       </div>
     </section>
   )

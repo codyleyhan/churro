@@ -1,4 +1,4 @@
-import { observable, decorate, action } from 'mobx'
+import { observable, decorate, action, autorun } from 'mobx'
 
 import firebase from '../Firebase';
 import errorStore from './errors';
@@ -16,6 +16,7 @@ class GroupStore {
       timestampsInSnapshots: true
     });
     this.db = db.collection('groups');
+    autorun(() => this.updateGroup());
   }
 
   get(id) {
@@ -33,7 +34,6 @@ class GroupStore {
       this.group = doc.data();
       this.group.id = id;
       this.isFetching = false;
-      console.log(this.group);
       return this.group;
     }).catch(err => {
       this.isFetching = false;
@@ -65,15 +65,33 @@ class GroupStore {
     });
   }
 
-  add(group) {
+  add(name, users, tasks) {
+    const user_emails = users.map(user => user.email);
+    const group = {
+      name,
+      users,
+      tasks,
+      user_emails,
+    }
+
     return this.db.add(group).then(doc => {
       group.id = doc.id;
       console.log(group);
       return group;
     }).catch(err => {
-      this.isFetching = false;
       errorStore.addError(err);
     });
+  }
+
+  updateGroup() {
+    if (this.group === null) {
+      return;
+    }
+    this.db.doc(this.group.id).set(this.group).then(res => {
+      console.log('Successfully updated group');
+    }).catch(err => {
+      errorStore.addError(err);
+    })
   }
 }
 
