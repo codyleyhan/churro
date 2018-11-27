@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { Route, NavLink, withRouter } from "react-router-dom";
 import { push as Menu } from "react-burger-menu";
 
-import store from "../store";
+import userStore from "../stores/users";
 
 import "../styles/NavBar.scss";
 import CircleInitials from "./CircleInitials";
+
 
 const NavBar = ({ team }) => {
   return (
@@ -22,6 +23,9 @@ const NavBar = ({ team }) => {
       </NavLink>
       <NavLink exact className="link" to={"/tasks"}>
         INFO
+      </NavLink>
+      <NavLink exact className="link" to={"/"} onClick={() => {userStore.logout()}}>
+        LOGOUT
       </NavLink>
     </Menu>
   );

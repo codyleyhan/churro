@@ -2,10 +2,18 @@ import { observable, computed, decorate, action } from 'mobx'
 
 import groupStore from './groups';
 
+const STORAGE_KEY = 'churro-user';
+
 class UserStore {
   currentUser = '';
   usersGroups = [];
   fetching = false;
+
+  constructor() {
+    if (localStorage.getItem(STORAGE_KEY)) {
+      this.currentUser = localStorage.getItem(STORAGE_KEY);
+    }
+  }
 
   get isLoggedIn() {
     return this.currentUser !== '';
@@ -14,11 +22,13 @@ class UserStore {
   logout() {
     this.currentUser = '';
     this.usersGroups = [];
+    localStorage.removeItem(STORAGE_KEY);
   }
 
   setCurrentUser(user) {
     this.currentUser = user;
     console.log('Set current user to ' + this.currentUser);
+    localStorage.setItem(STORAGE_KEY, user);
   }
 
   fetchCurrentUsersGroups() {

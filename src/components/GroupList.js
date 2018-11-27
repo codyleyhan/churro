@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { observer } from "mobx-react"
 import { Link } from "react-router-dom";
+import Spinner from 'react-spinkit';
+
 
 import userStore from '../stores/users';
 
@@ -14,7 +16,7 @@ const GroupList = observer(class GroupList extends Component {
   }
 
   render() {
-    let content = (<h1>Loading</h1>);
+    let content = (<Spinner name="folding-cube" />);
 
     if (!userStore.fetching) {
       const groups = userStore.usersGroups.map(group => {
