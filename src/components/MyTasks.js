@@ -39,9 +39,9 @@ const MyTasks = observer(class MyTasks extends Component {
         }
       }
 
-      if (task.currentQueue[0] === userStore.currentUser.email) {
+      if (task.currentQueue[0] === userStore.currentUser) {
         m[task.schedule].push(task);
-      } else if (1 < task.currentQueue.length && task.currentQueue[1] === userStore.currentUser.email) {
+      } else if (1 < task.currentQueue.length && task.currentQueue[1] === userStore.currentUser) {
         m["Coming up"].push(task);
       }
       
@@ -72,7 +72,7 @@ const MyTasks = observer(class MyTasks extends Component {
             <div className="my-tasks-cards">
               {cards}
             </div>
-            {focusedTask && (<FocusedTask task={focusedTask} closeURL={"/" + groupID + "/tasks"} />)}
+            {focusedTask && (<FocusedTask task={focusedTask} closeURL={"/groups/" + groupID + "/tasks"} />)}
           </section>
         </div>
         <Link to="/addchore">

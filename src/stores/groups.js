@@ -1,7 +1,7 @@
-import firebase from '../Firebase';
-import { observable, decorate } from "mobx"
+import { observable, decorate, action } from 'mobx'
 
-import userStore from './users';
+import firebase from '../Firebase';
+import errorStore from './errors';
 
 class GroupStore {
   group = null;
@@ -32,22 +32,36 @@ class GroupStore {
 
       this.group = doc.data();
       this.group.id = id;
-      userStore.users = this.group.users;
       this.isFetching = false;
+      console.log(this.group);
       return this.group;
     }).catch(err => {
       this.isFetching = false;
-      console.log(err);
+      errorStore.addError(err);
     })
   }
 
   getUsersGroups(email) {
-    return this.db.where('users', 'array-contains', email).get().then((doc) => {
-      if (!doc.exists) {
+    console.log(email);
+    return this.db.where('user_emails', 'array-contains', email).get().then((docs) => {
+      if (docs.empty) {
         console.log('User has no groups with email ' + email);
         return;
       }
-      return doc.data();
+
+      let groups = [];
+      docs.forEach(doc => {
+        const group = doc.data();
+        let item =  {
+          id: doc.id,
+          name: group.name
+        }
+        groups.push(item);
+      });
+      return groups;
+    }).catch(err => {
+      this.isFetching = false;
+      errorStore.addError(err);
     });
   }
 
@@ -56,6 +70,9 @@ class GroupStore {
       group.id = doc.id;
       console.log(group);
       return group;
+    }).catch(err => {
+      this.isFetching = false;
+      errorStore.addError(err);
     });
   }
 }
@@ -63,6 +80,9 @@ class GroupStore {
 decorate(GroupStore, {
   group: observable,
   isFetching: observable,
+  get: action,
+  getUsersGroups: action,
+  add: action,
 })
 
 

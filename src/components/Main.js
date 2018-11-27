@@ -26,7 +26,7 @@ class Main extends Component {
             <h4 className="welcome-subheader">The New Way to Manage Chores</h4>
             <div className="button-container">
               <Link to="/new"><CallToActionButton onClick={this.transitionOut}>START A NEW GROUP</CallToActionButton></Link>
-              <Link to="/tasks"><Button>LOGIN</Button></Link>
+              <Link to="/login"><Button>LOGIN</Button></Link>
             </div>
           </div>
         </div>

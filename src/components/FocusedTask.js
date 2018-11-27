@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import userStore from '../stores/users';
+import groupStore from '../stores/groups';
 import CircleInitials from './CircleInitials';
 import CallToActionButton from './CallToActionButton';
 
@@ -9,7 +9,7 @@ import '../styles/FocusedTask.scss'
 
 const FocusedTask = ({ task, closeURL }) => {
   const queue = task.currentQueue.map(email => {
-    const user = userStore.users[email];
+    const user = groupStore.group.users[email];
     return (
       <li key={email} className="focused-task-queue-item">
         <span><CircleInitials name={user.name} color={user.color} style={{display: 'inline'}} />{user.name}</span>
