@@ -7,6 +7,23 @@ class GroupStore {
   group = null;
   isFetching = true;
 
+  userColors = [
+    'tomato',
+    'plum',
+    'teal',
+    'turquoise',
+    'forestGreen',
+    'fireBrick',
+    'MediumVioletRed',
+    'DarkOrange',
+    'gold',
+    'SlateBlue',
+    'CadetBlue',
+    'Navy',
+    'DarkSlateGray',
+    'LightSlateGray'
+  ]
+
   constructor(firebase) {
     // Initialize Cloud Firestore through Firebase
     var db = firebase.firestore();
