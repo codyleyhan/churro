@@ -32,16 +32,15 @@ class AddChore extends Component {
       <div>
         {this.renderRedirect()}
         <NavBar />
-        <div className="MyTasks center">
+        <div className="MyTasks center AddChore">
           <h1>The CSS Slayers</h1>
-          <h2>Add Task</h2>
-          Name: <Input id="task-name-id" placeholder="Task Name" />
+          <h2>Add Chore</h2>
+          <Input id="task-name-id" placeholder="Chore Name" />
           <br />
-          Description:{" "}
           <textarea
             className="text-input"
             id="task-desc-id"
-            placeholder="Task Description"
+            placeholder="Chore Description"
           />
           <br />
           Frequency:{" "}

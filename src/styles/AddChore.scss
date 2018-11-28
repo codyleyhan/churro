@@ -16,3 +16,17 @@
     outline: none;
   }
 }
+
+.AddChore {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 30px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: $card-shadow;
+  border-bottom: 1px solid transparentize($text-color, 0.8);
+}
