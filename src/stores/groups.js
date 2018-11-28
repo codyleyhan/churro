@@ -16,7 +16,7 @@ class GroupStore {
       timestampsInSnapshots: true
     });
     this.db = db.collection('groups');
-    autorun(() => this.updateGroup(), { delay: 150 });
+    autorun(() => this.updateGroup(), { delay: 300 });
   }
 
   get(id) {
