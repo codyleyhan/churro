@@ -9,7 +9,7 @@ import CircleInitials from './CircleInitials';
 
 
 const TaskCard = ({ tasks, title }) => {
-  if (tasks.length == 0) {
+  if (tasks.length === 0) {
     return null;
   }
   const items = tasks.map(task => {

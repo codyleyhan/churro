@@ -1,15 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Route, NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { push as Menu } from "react-burger-menu";
 
 import userStore from "../stores/users";
 
 import "../styles/NavBar.scss";
-import CircleInitials from "./CircleInitials";
 
 
-const NavBar = ({ team }) => {
+const NavBar = () => {
   return (
     <Menu>
       <NavLink exact className="link" to={"/"}>

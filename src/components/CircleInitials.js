@@ -1,7 +1,5 @@
 import React from 'react';
 
-import store from '../store';
-
 import '../styles/CircleInitials.scss'
 
 const CircleInitials = ({ name, color }) => {

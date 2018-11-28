@@ -3,18 +3,14 @@ import { Link } from "react-router-dom";
 
 import CallToActionButton from './CallToActionButton';
 import Button from './Button';
-import NewGroup from './NewGroup';
 
 import '../styles/Main.scss';
-
-const new_group_route = 'new'
 
 class Main extends Component {
   transitionOut() {
     let elem = document.getElementById('landing');
     elem.style.left = "-10%";
     elem.style.opacity = 0;
-    // setTimeout(()=>{window.location.href += new_group_route}, 500);
   }
 
   render() {
