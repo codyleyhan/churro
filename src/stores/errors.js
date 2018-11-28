@@ -1,4 +1,4 @@
-import { observable, computed, decorate } from 'mobx'
+import { observable, computed, decorate, action } from 'mobx'
 
 class ErrorStore {
   errors = [];
@@ -30,6 +30,7 @@ class ErrorStore {
 
 decorate(ErrorStore, {
   errors: observable,
+  addError: action,
   hasErrors: computed
 });
 
