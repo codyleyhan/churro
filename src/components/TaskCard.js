@@ -7,6 +7,14 @@ import groupStore from '../stores/groups';
 import '../styles/TaskCard.scss'
 import CircleInitials from './CircleInitials';
 
+const titleMappings = {
+  "Daily": "TODAY",
+  "Weekly": "THIS WEEK",
+  "Biweekly": "IN THE NEXT TWO WEEKS",
+  "Monthly": "THIS MONTH",
+  "As needed": "AS NEEDED",
+  "Coming up": "COMING UP",
+}
 
 const TaskCard = ({ tasks, title }) => {
   if (tasks.length === 0) {
@@ -30,7 +38,7 @@ const TaskCard = ({ tasks, title }) => {
   return (
     <section className="task-card">
       <header className="task-card-title"> 
-        {title}
+        {titleMappings[title] ? titleMappings[title] : title}
       </header>
       <ul className="task-card-list">
         {items}
