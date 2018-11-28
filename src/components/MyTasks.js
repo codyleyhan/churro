@@ -7,6 +7,7 @@ import TaskCard from "./TaskCard";
 import FocusedTask from "./FocusedTask";
 import NavBar from "./NavBar";
 import AddChoreButton from "./AddChoreButton";
+import Notif from "./Notif.js";
 
 import groupStore from '../stores/groups';
 import userStore from '../stores/users';

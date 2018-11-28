@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import groupStore from '../stores/groups';
 import CircleInitials from './CircleInitials';
 import CallToActionButton from './CallToActionButton';
+import Notif from "./Notif.js";
 
 import '../styles/FocusedTask.scss'
 
@@ -18,11 +19,14 @@ const FocusedTask = ({ task, closeURL }) => {
   })
 
   const handleComplete = () => {
+    document.getElementById(task.name).style.top = 0;
     task.currentQueue.push(task.currentQueue.shift());
+    setTimeout(()=>{document.getElementById(task.name).style.top = "-50px";}, 2000);
   }
 
   return (
     <section className="focused-task-card">
+      <Notif id={task.name} notifText={task.name+" - Done!"}/>
       <div className="focused-task-content">
         <div className="focused-task-close">
           <Link className="focused-task-close-button" to={closeURL}>x</Link>
