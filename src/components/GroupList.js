@@ -16,7 +16,11 @@ const GroupList = observer(class GroupList extends Component {
   }
 
   render() {
-    let content = (<Spinner name="folding-cube" />);
+    let content = (
+      <div>
+        <Spinner name='double-bounce' />
+      </div>
+    );
 
     if (!userStore.fetching) {
       const groups = userStore.usersGroups.map(group => {
@@ -27,9 +31,12 @@ const GroupList = observer(class GroupList extends Component {
         )
       });
       content = (
-        <ul>
-          {groups}
-        </ul>
+        <section>
+          <h1>Your Groups</h1>
+          <ul>
+            {groups}
+          </ul>
+        </section>
       )
     }
     return (
