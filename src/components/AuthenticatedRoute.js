@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 import userStore from '../stores/users';
 
-const AuthRoute = ({ component: Component, ...rest }) => {
+const AuthenticatedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -12,7 +12,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to="/"
+            to={"/login?redirect=" + props.location.pathname}
           />
         )
       }
@@ -20,4 +20,4 @@ const AuthRoute = ({ component: Component, ...rest }) => {
   );
 }
 
-export default AuthRoute;
+export default AuthenticatedRoute;

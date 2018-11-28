@@ -9,7 +9,7 @@ import "../styles/NavBar.scss";
 
 const NavBar = () => {
   return (
-    <Menu>
+    <Menu style={{height: null}}>
       <NavLink exact className="link" to={"/"}>
         HOME
       </NavLink>

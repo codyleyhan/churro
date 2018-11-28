@@ -34,7 +34,9 @@ const Login = observer(class Login extends Component {
   handleSubmit() {
     if (this.state.email.trim() && this.emailRE.test(this.state.email)) {
       userStore.setCurrentUser(this.state.email);
-      this.props.history.push('/groups');
+      let params = new URLSearchParams(this.props.location.search);
+      const next = params.get('redirect') ? params.get('redirect') : '/groups';
+      this.props.history.push(next);
     } else {
       this.setState({
         email: this.state.email,
@@ -51,7 +53,7 @@ const Login = observer(class Login extends Component {
         <div className="container">
           <div className="NewGroup">
           <div className="form group-name">
-            <Input id="group-name-input" style={this.state.styles} placeholder="Email" value={this.state.value} onChange={this.handleChange}/>
+            <Input id="group-name-input" style={this.state.styles} placeholder="Your Email" value={this.state.value} onChange={this.handleChange}/>
             <Button stylename="button--next" onClick={this.handleSubmit} />
           </div>
           </div>

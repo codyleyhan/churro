@@ -17,7 +17,7 @@ const App = () => (
     <main>
       <Route path="/" exact component={Main} />
       <Route path="/login" exact component={Login} />
-      <Route path="/new" exact component={NewGroup} />
+      <AuthenticatedRoute path="/new" exact component={NewGroup} />
       <AuthenticatedRoute path="/groups" exact component={GroupList} />
       <AuthenticatedRoute path="/groups/:group/tasks" exact component={MyTasks} />
       <AuthenticatedRoute path="/groups/:group/tasks/:id" exact component={MyTasks} />
