@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 import groupStore from '../stores/groups';
+import userStore from '../stores/users';
 import CircleInitials from './CircleInitials';
 import CallToActionButton from './CallToActionButton';
 import Notif from "./Notif.js";
@@ -41,8 +42,12 @@ const FocusedTask = ({ task, closeURL }) => {
         <ul className="focused-task-queue">
           {queue}
         </ul>
-
-        <CallToActionButton onClick={handleComplete}>COMPLETE TASK</CallToActionButton>
+        {userStore.currentUser == task.currentQueue[0] ?
+          (<CallToActionButton onClick={handleComplete}>COMPLETE TASK</CallToActionButton>)
+          :
+          null
+         }
+        
       </div>
     </section>
   )
