@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import CallToActionButton from "./CallToActionButton";
 import Button from "./Button";
 import Input from "./Input";
 
@@ -38,6 +37,14 @@ class NewGroup extends Component {
     this.setState({ roommates: roommates });
   };
 
+  onKeyPress = fn => e => {
+    console.log('key pressed', e.key);
+    if (e.key === 'Enter') {
+      console.log('here', fn);
+      fn();
+    }
+  }
+
   getFormElement() {
     let formElement;
     let roommates = this.state.roommates;
@@ -45,7 +52,9 @@ class NewGroup extends Component {
     if (this.state.step == "group-name") {
       formElement = (
         <div className="form group-name">
-          <Input id="group-name-input" placeholder="Group Name" />
+          <Input id="group-name-input" placeholder="Group Name"
+            onKeyPress={this.onKeyPress(this.formFlow("group-name", "roommates"))}
+          />
           <Button
             stylename="button--next"
             onClick={this.formFlow("group-name", "roommates")}
@@ -61,7 +70,9 @@ class NewGroup extends Component {
             return <div key={index}>{roommate.name}</div>;
           })}
           <Input id="roommate-name-input" placeholder="Roommate Name" />
-          <Input id="roommate-email-input" placeholder="Roommate Email" />
+          <Input id="roommate-email-input" placeholder="Roommate Email" 
+            onKeyPress={this.onKeyPress(_this.addRoommate)}
+          />
           <div>
             <Button
               stylename="button--back"

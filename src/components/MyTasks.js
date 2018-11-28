@@ -21,7 +21,8 @@ const MyTasks = observer(class MyTasks extends Component {
   }
 
   render() {
-    let content = (<Spinner className="center" name='double-bounce' />)
+    let content = (<Spinner className="center" name='double-bounce' />);
+    const groupID = this.props.match.params.group;
     if (!groupStore.isFetching) {
       let focusedTask;
       const tasks = groupStore.group.tasks.reduce((m, task) => {
@@ -51,8 +52,6 @@ const MyTasks = observer(class MyTasks extends Component {
         return (<TaskCard key={kv[0]} title={kv[0]} tasks={kv[1]} />)
       });
 
-      const groupID = this.props.match.params.group;
-
       content = (
         <div>
           <h1 className="center">{groupStore.group.name}</h1>
@@ -74,7 +73,7 @@ const MyTasks = observer(class MyTasks extends Component {
         <div className="MyTasks">
           {content}
         </div>
-        <Link to="/addchore">
+        <Link to={"/groups/" + groupID + "/addchore"}>
           <AddChoreButton />
         </Link>
       </div>

@@ -9,15 +9,12 @@ import "../styles/NavBar.scss";
 
 const NavBar = () => {
   return (
-    <Menu style={{height: null}}>
+    <Menu>
       <NavLink exact className="link" to={"/"}>
         HOME
       </NavLink>
       <NavLink exact className="link" to={"/groups"}>
         GROUPS
-      </NavLink>
-      <NavLink exact className="link" to={"/addchore"}>
-        ADD TASK
       </NavLink>
       <NavLink exact className="link" to={"/"} onClick={() => {userStore.logout()}}>
         LOGOUT

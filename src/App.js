@@ -21,7 +21,7 @@ const App = () => (
       <AuthenticatedRoute path="/groups" exact component={GroupList} />
       <AuthenticatedRoute path="/groups/:group/tasks" exact component={MyTasks} />
       <AuthenticatedRoute path="/groups/:group/tasks/:id" exact component={MyTasks} />
-      <AuthenticatedRoute path="/addchore" exact component={AddChore} />
+      <AuthenticatedRoute path="/groups/:group/addchore" exact component={AddChore} />
     </main>
   </Router>
 );

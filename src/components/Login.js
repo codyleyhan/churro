@@ -20,8 +20,15 @@ const Login = observer(class Login extends Component {
       styles: {}
     };
 
+    this.onKeyPress = this.onKeyPress.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this); 
+  }
+
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleSubmit();
+    }
   }
 
   handleChange(e) {
@@ -53,7 +60,7 @@ const Login = observer(class Login extends Component {
         <div className="container">
           <div className="NewGroup">
           <div className="form group-name">
-            <Input id="group-name-input" style={this.state.styles} placeholder="Your Email" value={this.state.value} onChange={this.handleChange}/>
+            <Input id="group-name-input" style={this.state.styles} placeholder="Your Email" value={this.state.value} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
             <Button stylename="button--next" onClick={this.handleSubmit} />
           </div>
           </div>
