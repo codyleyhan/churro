@@ -82,13 +82,19 @@ class GroupStore {
     });
   }
 
-  add(name, users, tasks) {
-    const user_emails = users.map(user => user.email);
+  add(name, userEmails, tasks) {
+    const users = userEmails.map((email, idx) => {
+      return {
+        email,
+        color: this.userColors[idx%this.userColors.length]
+      }
+    });
+    
     const group = {
       name,
       users,
       tasks,
-      user_emails,
+      user_emails: userEmails,
     }
 
     return this.db.add(group).then(doc => {
