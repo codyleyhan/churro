@@ -29,10 +29,10 @@ const FocusedTask = ({ task, closeURL }) => {
     <section className="focused-task-card">
       <Notif id={task.name} notifText={task.name+" - Done!"}/>
       <div className="focused-task-content">
-        <div className="focused-task-close">
-          <Link className="focused-task-close-button" to={closeURL}>x</Link>
-        </div>
         <header className="focused-task-card-name"> 
+          <div className="focused-task-close">
+            <Link className="focused-task-close-button" to={closeURL}>x</Link>
+          </div>
           <h2>{task.name}</h2>
         </header>
         <p className="focused-task-card-desc">

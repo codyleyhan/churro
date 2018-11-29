@@ -2,6 +2,23 @@
   width: 80%;
   margin: 0 auto;
 
+  .chores-list-title {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &:before {
+    content:"";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 85%;
+    top: -20%;
+    background: url("../img/pattern.svg") no-repeat;
+    background-size: 25%;
+    z-index: -100;
+  }
+
   .my-tasks-columns {
     display: flex;
     flex-direction: row;

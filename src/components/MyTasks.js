@@ -55,7 +55,7 @@ const MyTasks = observer(class MyTasks extends Component {
       content = (
         <div>
           <h1 className="center">{groupStore.group.name}</h1>
-            <h2 className="center">My Tasks</h2>
+            <p className="chores-list-title center">Chores List</p>
 
             <section className="my-tasks-columns">
               <div className="my-tasks-cards">
