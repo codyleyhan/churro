@@ -60,7 +60,8 @@ const Login = observer(class Login extends Component {
         <div className="container">
           <div className="NewGroup">
           <div className="form group-name">
-            <Input id="group-name-input" style={this.state.styles} placeholder="Your Email" value={this.state.value} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+            <p>What is your email?</p>
+            <Input id="group-name-input" style={this.state.styles} placeholder="Email" value={this.state.value} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
             <Button stylename="button--next" onClick={this.handleSubmit} />
           </div>
           </div>

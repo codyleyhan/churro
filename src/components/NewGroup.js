@@ -52,6 +52,7 @@ class NewGroup extends Component {
     if (this.state.step == "group-name") {
       formElement = (
         <div className="form group-name">
+          <p>What is your group name?</p>
           <Input id="group-name-input" placeholder="Group Name"
             onKeyPress={this.onKeyPress(this.formFlow("group-name", "roommates"))}
           />
