@@ -16,15 +16,15 @@ self.__precacheManifest = [
     "url": "/churro/static/js/runtime~main.cdbcaea7.js"
   },
   {
-    "revision": "3347de582165a31ecb6f",
-    "url": "/churro/static/js/main.3347de58.chunk.js"
+    "revision": "0b0d97985d0c4d9a0151",
+    "url": "/churro/static/js/main.0b0d9798.chunk.js"
   },
   {
     "revision": "ef91b9ed2d449bf711de",
     "url": "/churro/static/js/1.ef91b9ed.chunk.js"
   },
   {
-    "revision": "3347de582165a31ecb6f",
+    "revision": "0b0d97985d0c4d9a0151",
     "url": "/churro/static/css/main.3f836cb3.chunk.css"
   },
   {
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/churro/static/css/1.89a91906.chunk.css"
   },
   {
-    "revision": "60f259f7cc279790adcf93b933a4b180",
+    "revision": "456248e952a845453ea8e7ab66de7aa4",
     "url": "/churro/index.html"
   }
 ];
