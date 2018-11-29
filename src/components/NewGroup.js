@@ -46,7 +46,7 @@ const NewGroup = observer(class NewGroup extends Component {
     if (name && name.trim()) {
       console.log(name)
       this.formFlow("your-name", "group-name")();
-      newGroupStore.addUser(userStore.currentUser, name);
+      newGroupStore.addUser(name, userStore.currentUser);
     }
   }
 
