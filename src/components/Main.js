@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 
 import CallToActionButton from './CallToActionButton';
 import Button from './Button';
+import NavBar from './NavBar';
 
 import userStore from '../stores/users';
 
@@ -19,6 +20,7 @@ const Main = observer(class Main extends Component {
   render() {
     return (
       <div className="Main">
+        <NavBar />
         <div className="container">
           <div id="landing">
             <h2 className="welcome-header">Welcome to Churro!</h2>
