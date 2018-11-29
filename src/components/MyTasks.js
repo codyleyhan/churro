@@ -27,7 +27,7 @@ const MyTasks = observer(class MyTasks extends Component {
       let focusedTask;
       const tasks = groupStore.group.tasks.reduce((m, task) => {
         if (this.props.match.params.id) {
-          if (task.id === this.props.match.params.id) {
+          if (task.id.toString() === this.props.match.params.id) {
             focusedTask = task;
           }
         }

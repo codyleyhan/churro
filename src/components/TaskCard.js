@@ -12,7 +12,7 @@ const titleMappings = {
   "Weekly": "THIS WEEK",
   "Biweekly": "IN THE NEXT TWO WEEKS",
   "Monthly": "THIS MONTH",
-  "As needed": "AS NEEDED",
+  "As Needed": "AS NEEDED",
   "Coming up": "COMING UP",
 }
 
