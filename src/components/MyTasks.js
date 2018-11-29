@@ -13,6 +13,7 @@ import groupStore from '../stores/groups';
 import userStore from '../stores/users';
 
 import '../styles/MyTasks.scss';
+import churro from '../img/churro.svg';
 
 const MyTasks = observer(class MyTasks extends Component {
   componentDidMount() {
@@ -54,9 +55,11 @@ const MyTasks = observer(class MyTasks extends Component {
 
       content = (
         <div>
-          <h1 className="center">{groupStore.group.name}</h1>
+          <div className="group-heading center">
+            <img className="churro-img" src={churro} />
+            <h1>{groupStore.group.name}</h1>
+          </div>
             <p className="chores-list-title center">Chores List</p>
-
             <section className="my-tasks-columns">
               <div className="my-tasks-cards">
                 {cards}

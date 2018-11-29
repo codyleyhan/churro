@@ -8,6 +8,7 @@ import userStore from '../stores/users';
 
 import '../styles/Main.scss';
 import '../styles/NewGroup.scss';
+import '../styles/GroupList.scss';
 
 const GroupList = observer(class GroupList extends Component {
   constructor(props) {
@@ -31,9 +32,9 @@ const GroupList = observer(class GroupList extends Component {
         )
       });
       content = (
-        <section>
+        <section className="GroupList">
           <h1>Your Groups</h1>
-          <ul>
+          <ul className="list-container">
             {groups}
           </ul>
         </section>
