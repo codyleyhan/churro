@@ -86,7 +86,7 @@ class NewGroup extends Component {
               {" "}
               Add Roommate +
             </Button>
-            <Link to="/addchore">
+            <Link to={{ pathname: '/newchores', state: { groupName: this.state.groupName} }}>
               <Button>Added All Roommates ></Button>
             </Link>
           </div>

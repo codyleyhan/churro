@@ -8,66 +8,58 @@ import Input from './Input';
 import '../styles/Main.scss';
 import '../styles/NewGroup.scss';
 
-class NewGroup extends Component {
+class NewChores extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 'group-name',
-      groupName: '',
-      roommates: []
+      chores: []
     }
+    this.state.groupName = props.location.state.groupName;
   }
 
-  formFlow = (current_step, next_step) => e => {
-    let newState = {step: next_step};
-    if (current_step == 'group-name') {
-      newState.groupName = document.getElementById('group-name-input').value;
+  addChore = () => {
+    let chores = this.state.chores;
+    let new_chore = {
+      name: document.getElementById('chore-name-input').value,
+      description: document.getElementById('chore-email-input').value,
+      frequency: document.getElementById('chore-frequency-input').value
     }
-    this.setState(newState);
-  }
-
-  addRoommate = () => {
-    let roommates = this.state.roommates;
-    let new_roommate = {
-      name: document.getElementById('roommate-name-input').value,
-      email: document.getElementById('roommate-email-input').value
-    }
-    roommates.push(new_roommate);
-    document.getElementById('roommate-name-input').value = '';
-    document.getElementById('roommate-email-input').value = '';
-    this.setState({roommates: roommates});
+    chores.push(new_chore);
+    document.getElementById('chore-name-input').value = '';
+    document.getElementById('chore-email-input').value = '';
+    document.getElementById('chore-frequency-input').value = 'Daily';
+    this.setState({chores: chores});
   }
 
   getFormElement() {
     let formElement;
-    let roommates = this.state.roommates;
+    let chores = this.state.chores;
     let _this = this;
-    if (this.state.step == 'group-name') {
-      formElement = 
-      <div className="form group-name">
-        <Input id="group-name-input" placeholder="Group Name"/>
-        <Button stylename="button--next" onClick={this.formFlow('group-name','roommates')}/>
+    
+    formElement = 
+    <div className="form roommates">
+      <h4 className="form-title">{this.state.groupName}</h4>
+      <p>What are the chores y'all have to do?</p>
+      {
+        chores.map(function(chore, index){
+          return <div key={index}>{chore.name} - {chore.frequency}</div>
+        })
+      }
+      <Input id="chore-name-input" placeholder="Chore Name"/>
+      <Input id="chore-email-input" placeholder="Chore Description"/>
+      <div style={{paddingTop: "25px"}}>Frequency:{" "}
+        <select id="chore-frequency-input" defaultValue="daily">
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Biweekly">Biweekly</option>
+        </select>
       </div>
-    }
-    else if (this.state.step == 'roommates'){
-      formElement = 
-      <div className="form roommates">
-        <h4 className="form-title">{this.state.groupName}</h4>
-        <p>Who are the roommates in this group?</p>
-        {
-          roommates.map(function(roommate, index){
-            return <div key={index}>{roommate.name}</div>
-          })
-        }
-        <Input id="roommate-name-input" placeholder="Roommate Name"/>
-        <Input id="roommate-email-input" placeholder="Roommate Email"/>
-        <div>
-          <Button stylename="button--back" onClick={this.formFlow('roommates','group-name')}/>
-          <Button stylename="button--call-to-action" onClick={_this.addRoommate}> Add Roommate +</Button>
-          <Link to='/new_task'><Button>Added All Roommates ></Button></Link>
-        </div>
+      <div>
+        <Button stylename="button--call-to-action" onClick={_this.addChore}> Add Chore +</Button>
+        <Link to='/groups'><Button>Added All Chores ></Button></Link>
       </div>
-    }
+    </div>
+    
     return formElement
   }
 
@@ -85,4 +77,4 @@ class NewGroup extends Component {
   }
 }
 
-export default NewGroup;
+export default NewChores;
