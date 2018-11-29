@@ -44,7 +44,7 @@ const MyTasks = observer(class MyTasks extends Component {
         "Weekly": [],
         "Biweekly": [],
         "Monthly": [],
-        "As needed": [],
+        "As Needed": [],
         "Coming up": [],
       });
 

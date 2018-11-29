@@ -1,4 +1,5 @@
-import { observable, decorate, action, autorun } from 'mobx'
+import { observable, decorate, action, autorun } from 'mobx';
+import shortid from 'shortid';
 
 import firebase from '../Firebase';
 import errorStore from './errors';
@@ -6,23 +7,6 @@ import errorStore from './errors';
 class GroupStore {
   group = null;
   isFetching = true;
-
-  userColors = [
-    'tomato',
-    'plum',
-    'teal',
-    'turquoise',
-    'forestGreen',
-    'fireBrick',
-    'MediumVioletRed',
-    'DarkOrange',
-    'gold',
-    'SlateBlue',
-    'CadetBlue',
-    'Navy',
-    'DarkSlateGray',
-    'LightSlateGray'
-  ]
 
   constructor(firebase) {
     // Initialize Cloud Firestore through Firebase
@@ -59,7 +43,6 @@ class GroupStore {
   }
 
   getUsersGroups(email) {
-    console.log(email);
     return this.db.where('user_emails', 'array-contains', email).get().then((docs) => {
       if (docs.empty) {
         console.log('User has no groups with email ' + email);
@@ -82,23 +65,9 @@ class GroupStore {
     });
   }
 
-  add(name, userEmails, tasks) {
-    const users = userEmails.map((email, idx) => {
-      return {
-        email,
-        color: this.userColors[idx%this.userColors.length]
-      }
-    });
-    
-    const group = {
-      name,
-      users,
-      tasks,
-      user_emails: userEmails,
-    }
-
-    return this.db.add(group).then(doc => {
-      group.id = doc.id;
+  add(group) {
+    group.id = shortid.generate();
+    return this.db.doc(group.id).set(group).then(doc => {
       console.log(group);
       return group;
     }).catch(err => {

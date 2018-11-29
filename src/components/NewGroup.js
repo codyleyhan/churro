@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
 import Button from "./Button";
 import Input from "./Input";
@@ -7,21 +8,18 @@ import Input from "./Input";
 import "../styles/Main.scss";
 import "../styles/NewGroup.scss";
 
-class NewGroup extends Component {
+import newGroupStore from '../stores/newGroup';
+
+const NewGroup = observer(class NewGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       step: "group-name",
-      groupName: "",
-      roommates: []
     };
   }
 
   formFlow = (current_step, next_step) => e => {
     let newState = { step: next_step };
-    if (current_step == "group-name") {
-      newState.groupName = document.getElementById("group-name-input").value;
-    }
     this.setState(newState);
   };
 
@@ -31,30 +29,28 @@ class NewGroup extends Component {
       name: document.getElementById("roommate-name-input").value,
       email: document.getElementById("roommate-email-input").value
     };
-    roommates.push(new_roommate);
     document.getElementById("roommate-name-input").value = "";
     document.getElementById("roommate-email-input").value = "";
-    this.setState({ roommates: roommates });
+    newGroupStore.addUser(new_roommate.name, new_roommate.email);
   };
 
   onKeyPress = fn => e => {
-    console.log('key pressed', e.key);
     if (e.key === 'Enter') {
-      console.log('here', fn);
       fn();
     }
   }
 
   getFormElement() {
     let formElement;
-    let roommates = this.state.roommates;
     let _this = this;
-    if (this.state.step == "group-name") {
+    if (this.state.step === "group-name") {
       formElement = (
         <div className="form group-name">
           <p>What is your group name?</p>
           <Input id="group-name-input" placeholder="Group Name"
             onKeyPress={this.onKeyPress(this.formFlow("group-name", "roommates"))}
+            value={newGroupStore.name}
+            onChange={(e) => newGroupStore.name = e.target.value}
           />
           <Button
             stylename="button--next"
@@ -62,13 +58,13 @@ class NewGroup extends Component {
           />
         </div>
       );
-    } else if (this.state.step == "roommates") {
+    } else if (this.state.step === "roommates") {
       formElement = (
         <div className="form roommates">
           <h4 className="form-title">{this.state.groupName}</h4>
           <p>Who are the roommates in this group?</p>
-          {roommates.map(function(roommate, index) {
-            return <div key={index}>{roommate.name}</div>;
+          {Object.values(newGroupStore.users).map(function(roommate, index) {
+            return <div key={index}>{roommate.name} - {roommate.email}</div>;
           })}
           <Input id="roommate-name-input" placeholder="Roommate Name" />
           <Input id="roommate-email-input" placeholder="Roommate Email" 
@@ -106,6 +102,6 @@ class NewGroup extends Component {
       </div>
     );
   }
-}
+})
 
 export default NewGroup;

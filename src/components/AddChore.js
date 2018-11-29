@@ -48,6 +48,8 @@ class AddChore extends Component {
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
             <option value="biweekly">Biweekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="as_needed">As Needed</option>
           </select>
           <br />
           <Button stylename="" onClick={this.addChore}>
