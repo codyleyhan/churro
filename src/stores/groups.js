@@ -65,6 +65,18 @@ class GroupStore {
     });
   }
 
+  addTask(name, description, schedule) {
+    const task = {
+      id: Date.now(),
+      name,
+      schedule,
+      description,
+      currentQueue: this.shuffle(Object.keys(this.group.user_emails))
+    }
+
+    this.group.tasks.push(task);
+  }
+
   add(group) {
     group.id = shortid.generate();
     return this.db.doc(group.id).set(group).then(doc => {
@@ -84,6 +96,14 @@ class GroupStore {
     }).catch(err => {
       errorStore.addError(err);
     })
+  }
+
+  shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
   }
 }
 
