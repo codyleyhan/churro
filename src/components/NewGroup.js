@@ -9,12 +9,13 @@ import "../styles/Main.scss";
 import "../styles/NewGroup.scss";
 
 import newGroupStore from '../stores/newGroup';
+import userStore from '../stores/users';
 
 const NewGroup = observer(class NewGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: "group-name",
+      step: "your-name",
     };
   }
 
@@ -24,7 +25,6 @@ const NewGroup = observer(class NewGroup extends Component {
   };
 
   addRoommate = () => {
-    let roommates = this.state.roommates;
     let new_roommate = {
       name: document.getElementById("roommate-name-input").value,
       email: document.getElementById("roommate-email-input").value
@@ -40,9 +40,34 @@ const NewGroup = observer(class NewGroup extends Component {
     }
   }
 
+  onUsersName = () => {
+    const name = document.getElementById("user-name-input").value;
+   
+    if (name && name.trim()) {
+      console.log(name)
+      this.formFlow("your-name", "group-name")();
+      newGroupStore.addUser(userStore.currentUser, name);
+    }
+  }
+
   getFormElement() {
     let formElement;
     let _this = this;
+    if (this.state.step === "your-name") {
+      formElement =(
+        <div className="form group-name">
+          <p>What is your name?</p>
+          <Input id="user-name-input" placeholder="Your Name"
+            onKeyPress={this.onKeyPress(this.onUsersName)}
+          />
+          <Button
+            stylename="button--next"
+            onClick={() => {this.onUsersName()}}
+          />
+        </div>
+      );
+    }
+
     if (this.state.step === "group-name") {
       formElement = (
         <div className="form group-name">
