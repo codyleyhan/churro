@@ -36,11 +36,6 @@ const suggestedChores = [
     description: 'Make sure to do a decent job.',
     frequency: 'Biweekly'
   },
-  {
-    name: 'Microwave a banana',
-    description: 'For the lolz.',
-    frequency: 'As Needed'
-  },
 ]
 
 const NewChores = observer(class NewChores extends Component {
@@ -90,7 +85,7 @@ const NewChores = observer(class NewChores extends Component {
   render() {
     const suggestions = this.state.suggestions.map((task, idx) => {
       return (
-        <button onClick={this.onSuggestionClick(task, idx)}>{task.name}</button>
+        <button key={idx} className="suggested-chores" onClick={this.onSuggestionClick(task, idx)}>{task.name}</button>
       );
     })
     return (
@@ -99,12 +94,21 @@ const NewChores = observer(class NewChores extends Component {
           <div className="NewGroup">
             <div className="form roommates">
               <h4 className="form-title">{newGroupStore.name}</h4>
-              <p>What are the chores y'all have to do?</p>
+              <span>What are the chores y'all have to do?</span>
               {
                 newGroupStore.tasks.map((task ) => { 
-                  return <div key={task.id}>{task.name} - {task.schedule}</div>
+                  return <div className="chore-todo" key={task.id}>{task.name} - {task.schedule}</div>
                 })
               }
+              {
+                0 < suggestions.length ? (
+                  <div >
+                    <p>Suggestions</p>
+                    <div className="suggestions-container">{suggestions}</div>
+                  </div>
+                ) : null
+              }
+              <p>Or create your own chore:</p>
               <Input id="chore-name-input" placeholder="Chore Name"/>
               <Input id="chore-email-input" placeholder="Chore Description"
                 onKeyPress={this.onKeyPress(this.addChore)}
@@ -122,14 +126,6 @@ const NewChores = observer(class NewChores extends Component {
                 <Button stylename="button--call-to-action" onClick={this.addChore}> Add Chore +</Button>
                 <Button onClick={this.saveGroup}>Added All Chores ></Button>
               </div>
-              {
-                0 < suggestions.length ? (
-                  <div>
-                    <h4>Some suggestions</h4>
-                    {suggestions}
-                  </div>
-                ) : null
-              }
             </div>
           </div>
         </div>
