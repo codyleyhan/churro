@@ -1,3 +1,6 @@
+@import "fonts";
+@import "colors";
+
 .NewGroup {
   .form-title {
     margin: 0;
@@ -8,4 +11,35 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.suggested-chores {
+  &:focus {
+    outline: none;
+  }
+
+  padding: 7px;
+  margin: 5px;
+  border-radius: 20px;
+  background-color: $blue;
+  color: $white;
+  font-size: 10px;
+  border: 0;
+}
+
+.suggestions-container {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chore-todo {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: $red;
+  color: $white;
+  font-size: 12px;
+  margin: 5px;
 }
