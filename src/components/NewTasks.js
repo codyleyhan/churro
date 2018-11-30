@@ -10,7 +10,48 @@ import '../styles/NewGroup.scss';
 
 import newGroupStore from '../stores/newGroup';
 
+const suggestedChores = [
+  {
+    name: 'Do the dishes',
+    description: 'Don\'t forget to squeeze out the sponge after.',
+    frequency: 'Daily'
+  },
+  {
+    name: 'Take out the trash',
+    description: 'Put in a new bag too!',
+    frequency: 'As Needed'
+  },
+  {
+    name: 'Maintenance request',
+    description: 'Let everyone know afterwards',
+    frequency: 'As Needed'
+  },
+  {
+    name: 'Vaccum the floor',
+    description: 'Empty out the vaccum after too.',
+    frequency: 'Biweekly'
+  },
+  {
+    name: 'Sweep the floor',
+    description: 'Make sure to do a decent job.',
+    frequency: 'Biweekly'
+  },
+  {
+    name: 'Microwave a banana',
+    description: 'For the lolz.',
+    frequency: 'As Needed'
+  },
+]
+
 const NewChores = observer(class NewChores extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      suggestions: suggestedChores,
+    }
+  } 
+
   addChore = () => {
     let new_chore = {
       name: document.getElementById('chore-name-input').value,
@@ -37,7 +78,21 @@ const NewChores = observer(class NewChores extends Component {
     }
   }
 
+  onSuggestionClick = (task, idx) => e => {
+    newGroupStore.addTask(task.name, task.description, task.frequency);
+    let newSuggestions = [...this.state.suggestions];
+    newSuggestions.splice(idx, 1);
+    this.setState({
+      suggestions: newSuggestions
+    });
+  }
+
   render() {
+    const suggestions = this.state.suggestions.map((task, idx) => {
+      return (
+        <button onClick={this.onSuggestionClick(task, idx)}>{task.name}</button>
+      );
+    })
     return (
       <div className="Main">
         <div className="container">
@@ -67,6 +122,14 @@ const NewChores = observer(class NewChores extends Component {
                 <Button stylename="button--call-to-action" onClick={this.addChore}> Add Chore +</Button>
                 <Button onClick={this.saveGroup}>Added All Chores ></Button>
               </div>
+              {
+                0 < suggestions.length ? (
+                  <div>
+                    <h4>Some suggestions</h4>
+                    {suggestions}
+                  </div>
+                ) : null
+              }
             </div>
           </div>
         </div>
