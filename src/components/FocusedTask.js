@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react"
 
 import groupStore from '../stores/groups';
 import userStore from '../stores/users';
@@ -55,4 +56,4 @@ const FocusedTask = ({ task, closeURL }) => {
   )
 }
 
-export default FocusedTask;
+export default observer(FocusedTask);

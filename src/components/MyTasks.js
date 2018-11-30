@@ -17,6 +17,13 @@ import '../styles/MyTasks.scss';
 import churro from '../img/churro.svg';
 
 const MyTasks = observer(class MyTasks extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      all: true
+    }
+  }
+
   componentDidMount() {
     const groupID = this.props.match.params.group;
     groupStore.get(groupID);
@@ -34,11 +41,16 @@ const MyTasks = observer(class MyTasks extends Component {
           }
         }
 
-        if (task.currentQueue[0] === userStore.currentUser) {
+        if (!this.state.all) {
+          if (task.currentQueue[0] === userStore.currentUser) {
+            m[task.schedule].push(task);
+          } else if (1 < task.currentQueue.length && task.currentQueue[1] === userStore.currentUser) {
+            m["Coming up"].push(task);
+          }
+        } else {
           m[task.schedule].push(task);
-        } else if (1 < task.currentQueue.length && task.currentQueue[1] === userStore.currentUser) {
-          m["Coming up"].push(task);
         }
+        
         
         return m;
       }, {
@@ -57,7 +69,7 @@ const MyTasks = observer(class MyTasks extends Component {
       content = (
         <div className="MyTasks">
           <div className="group-heading center">
-            <img className="churro-img" src={churro} />
+            <img className="churro-img" src={churro} alt="logo" />
             <h1>{groupStore.group.name}</h1>
           </div>
             <p className="chores-list-title center">Chores List</p>

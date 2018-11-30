@@ -21,7 +21,9 @@ const TaskCard = ({ tasks, title }) => {
     return null;
   }
   const items = tasks.map(task => {
+    console.log(task.currentQueue[0]);
     const user = groupStore.group.users[task.currentQueue[0]];
+    console.log(task, groupStore.group.users);
     return (
       <li key={task.id} className="task-card-item">
           <span className="task-card-check"><i className="far fa-check-circle"></i></span>
