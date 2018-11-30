@@ -1,6 +1,10 @@
 .MyTasks {
-  width: 80%;
   margin: 0 auto;
+  width: 100%;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
 
   .chores-list-title {
     font-size: 22px;
@@ -8,15 +12,23 @@
     margin-top: 0;
   }
 
+  &:after {
+    content:"";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url(../img/blue_rect.svg) 100% 0% no-repeat;
+    background-size: 30%;
+    z-index: -100;
+  }
+
   &:before {
     content:"";
     height: 100%;
     width: 100%;
     position: absolute;
-    left: 85%;
-    top: -20%;
-    background: url("../img/pattern.svg") no-repeat;
-    background-size: 25%;
+    background: url(../img/red_rect.svg) 0% 100% no-repeat;
+    background-size: 30%;
     z-index: -100;
   }
 
@@ -24,7 +36,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
+    width: 80%;
   }
 
   .my-tasks-cards {

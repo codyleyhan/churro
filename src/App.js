@@ -10,6 +10,7 @@ import MyTasks from "./components/MyTasks";
 import Login from "./components/Login";
 import AddChore from "./components/AddChore";
 import GroupList from "./components/GroupList";
+import Leaderboard from "./components/Leaderboard";
 
 import "./styles/index.scss";
 
@@ -19,6 +20,7 @@ const App = () => (
       <Route path="/" exact component={Main} />
       <Route path="/login" exact component={Login} />
       <AuthenticatedRoute path="/new" exact component={NewGroup} />
+      <AuthenticatedRoute path="/groups/:group/leaderboard" exact component={Leaderboard} />
       <AuthenticatedRoute path="/newchores" exact component={NewTasks} />
       <AuthenticatedRoute path="/groups" exact component={GroupList} />
       <AuthenticatedRoute path="/groups/:group/tasks" exact component={MyTasks} />

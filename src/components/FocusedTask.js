@@ -25,9 +25,11 @@ const FocusedTask = ({ task, closeURL }) => {
     setTimeout(()=>{document.getElementById(task.name).style.top = "-50px";}, 2000);
   }
 
+  let random_churros = Math.floor(Math.random() * 100);
+
   return (
     <section className="focused-task-card">
-      <Notif id={task.name} notifText={task.name+" - Done!"}/>
+      <Notif id={task.name} notifText={task.name+" - Done! You earned " + random_churros + " churros!"}/>
       <div className="focused-task-content">
         <header className="focused-task-card-name"> 
           <div className="focused-task-close">

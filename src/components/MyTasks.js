@@ -4,6 +4,7 @@ import { observer } from "mobx-react"
 import Spinner from 'react-spinkit';
 
 import TaskCard from "./TaskCard";
+import Button from './Button';
 import FocusedTask from "./FocusedTask";
 import NavBar from "./NavBar";
 import AddChoreButton from "./AddChoreButton";
@@ -54,7 +55,7 @@ const MyTasks = observer(class MyTasks extends Component {
       });
 
       content = (
-        <div>
+        <div className="MyTasks">
           <div className="group-heading center">
             <img className="churro-img" src={churro} />
             <h1>{groupStore.group.name}</h1>
@@ -73,9 +74,10 @@ const MyTasks = observer(class MyTasks extends Component {
     return (
       <div>
         <NavBar />
-        <div className="MyTasks">
           {content}
-        </div>
+        <Link to={"/groups/" + groupID + "/leaderboard"}>
+          <Button stylename="button--leaderboard">Leaderboard</Button>
+        </Link>
         <Link to={"/groups/" + groupID + "/addchore"}>
           <AddChoreButton />
         </Link>

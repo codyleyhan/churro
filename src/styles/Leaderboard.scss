@@ -1,0 +1,27 @@
+@import "fonts";
+@import "colors";
+
+.GroupList {
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard-table {
+  border-collapse: collapse;
+  width: 400px;
+  .leaderboard-row:nth-child(even) {
+    background-color: $purple;
+    color: $white;
+  }
+
+  th {
+    border-bottom: 1px solid $red;
+    padding: 10px;
+  }
+
+  td {
+    border-bottom: 1px solid $grey;
+    padding: 10px;
+  }
+
+}

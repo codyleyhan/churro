@@ -36,7 +36,6 @@ class AddChore extends Component {
         <NavBar />
         <div className="MyTasks center AddChore">
           <Notif id="add-chore-popup" notifText="Chore was added!" />
-          <h1>{groupStore.group.name}</h1>
           <h2>Add Chore</h2>
           <Input id="task-name" placeholder="Chore Name" />
           <br />
