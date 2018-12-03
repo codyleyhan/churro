@@ -62,38 +62,36 @@ const Login = observer(class Login extends Component {
 
   emailInput() {
     return (
-      <div className="Main">
-        <div className="container">
-          <div className="NewGroup">
-          <div className="form group-name">
-            <p>What is your email?</p>
-            <Input id="group-name-input" style={this.state.styles} placeholder="Email" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
-            <Button stylename="button--next" onClick={this.handleSubmit} />
-          </div>
-          </div>
-        </div>
-      </div>
+      <span>
+        <p>What is your email?</p>
+        <Input id="group-name-input" style={this.state.styles} placeholder="Email" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+      </span>
     );
   }
 
   passwordInput() {
     return (
+      <span>
+        <p>What is your password?</p>
+        <Input id="group-name-input" placeholder="Password" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+      </span>
+    );
+  }
+
+  render() {
+    let html = this.state.validEmail ? this.passwordInput() : this.emailInput();
+    return (
       <div className="Main">
         <div className="container">
           <div className="NewGroup">
           <div className="form group-name">
-            <p>What is your password?</p>
-            <Input id="group-name-input" placeholder="Password" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+            {html}
             <Button stylename="button--next" onClick={this.handleSubmit} />
           </div>
           </div>
         </div>
       </div>
     );
-  }
-
-  render() {
-    return this.state.validEmail ? this.passwordInput() : this.emailInput();
   }
 });
 
