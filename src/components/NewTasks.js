@@ -123,6 +123,11 @@ const NewChores = observer(class NewChores extends Component {
                 </select>
               </div>
               <div>
+                <Link to={{ pathname: '/new', state: "roommates"}}>
+                  <Button
+                    stylename="button--back"
+                  />
+                </Link>
                 <Button stylename="button--call-to-action" onClick={this.addChore}> Add Chore +</Button>
                 <Button onClick={this.saveGroup}>Added All Chores ></Button>
               </div>

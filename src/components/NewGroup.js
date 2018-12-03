@@ -15,7 +15,7 @@ const NewGroup = observer(class NewGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: "your-name",
+      step: props.location.state ? props.location.state : "your-name",
     };
   }
 
@@ -72,6 +72,10 @@ const NewGroup = observer(class NewGroup extends Component {
       formElement = (
         <div className="form group-name">
           <p>What is your group name?</p>
+          <Button
+            stylename="button--back"
+            onClick={this.formFlow("group-name", "your-name")}
+          />
           <Input id="group-name-input" placeholder="Group Name"
             onKeyPress={this.onKeyPress(this.formFlow("group-name", "roommates"))}
             value={newGroupStore.name}
