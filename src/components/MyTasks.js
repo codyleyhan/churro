@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import Spinner from "react-spinkit";
+import Toggle from 'react-toggle';
 
 import TaskCard from "./TaskCard";
 import Button from "./Button";
 import FocusedTask from "./FocusedTask";
 import NavBar from "./NavBar";
 import AddChoreButton from "./AddChoreButton";
-import Notif from "./Notif.js";
-import HelpTool from "./HelpTool.js";
 
 import groupStore from "../stores/groups";
 import userStore from "../stores/users";
@@ -22,8 +21,14 @@ const MyTasks = observer(
     constructor(props) {
       super(props);
       this.state = {
-        all: true
+        all: false
       };
+    }
+
+    onToggleChange = () => {
+      this.setState({
+        all: !this.state.all
+      })
     }
 
     componentDidMount() {
@@ -79,7 +84,7 @@ const MyTasks = observer(
               <img className="churro-img" src={churro} alt="logo" />
               <h1>{groupStore.group.name}</h1>
             </div>
-            <p className="chores-list-title center">Chores List</p>
+            <p className="chores-list-title center">{this.state.all ? "All" : "Your"} Chores List</p>
             <section className="my-tasks-columns">
               <div className="my-tasks-cards">{cards}</div>
               {focusedTask && (
@@ -97,13 +102,13 @@ const MyTasks = observer(
         <div>
           <NavBar />
           {content}
+          <Button stylename="button--leaderboard" style={{right: "230px"}} onClick={this.onToggleChange}>Show {!this.state.all ? "All" : "Just Yours"} Tasks</Button>
           <Link to={"/groups/" + groupID + "/leaderboard"}>
             <Button stylename="button--leaderboard">Leaderboard</Button>
           </Link>
           <Link to={"/groups/" + groupID + "/addchore"}>
             <AddChoreButton />
           </Link>
-          <HelpTool info="yoooo this is some text  yoooo this is some text yoooo this is some text" />
         </div>
       );
     }
