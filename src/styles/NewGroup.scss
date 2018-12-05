@@ -17,6 +17,7 @@
   &:focus {
     outline: none;
   }
+  cursor: pointer;
 
   padding: 7px;
   margin: 5px;
@@ -28,7 +29,6 @@
 }
 
 .suggestions-container {
-  cursor: pointer;
   display: flex;
   flex-direction: row;
   width: 400px;
