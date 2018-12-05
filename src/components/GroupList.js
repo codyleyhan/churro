@@ -24,13 +24,21 @@ const GroupList = observer(class GroupList extends Component {
     );
 
     if (!userStore.fetching) {
-      const groups = userStore.usersGroups.map(group => {
-        return (
-          <li key={group.id}>
-            <Link to={"/groups/" + group.id + "/tasks"}>{group.name}</Link>
-          </li>
-        )
-      });
+      let groups = 
+      <div>
+        You are currently not part of any group.
+        <Link to="/new"> Start a new group!</Link>
+      </div>
+      if (userStore.usersGroups.length > 0) {
+        groups =
+        userStore.usersGroups.map(group => {
+          return (
+            <li key={group.id}>
+              <Link to={"/groups/" + group.id + "/tasks"}>{group.name}</Link>
+            </li>
+          )
+        });
+      }
       content = (
         <section className="GroupList">
           <h1>Your Groups</h1>

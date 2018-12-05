@@ -41,9 +41,11 @@ const Main = observer(
                     {userStore.isLoggedIn ? "YOUR GROUPS" : "LOGIN"}
                   </Button>
                 </Link>
+                {
+                  userStore.isLoggedIn ? <Button onClick={() => userStore.logout()}>LOGOUT</Button>: "" 
+                }
               </div>
             </div>
-            <HelpTool info="yoooo this is some text  yoooo this is some text yoooo this is some text" />
           </div>
         </div>
       );

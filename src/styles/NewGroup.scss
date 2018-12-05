@@ -11,6 +11,15 @@
     justify-content: center;
     align-items: center;
   }
+
+  .roommates-list-container {
+    margin-bottom: 20px;
+  }
+
+  .roommate-list-item {
+    font-weight: 700;
+    color: $red;
+  }
 }
 
 .suggested-chores {

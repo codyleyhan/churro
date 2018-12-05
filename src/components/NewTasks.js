@@ -100,15 +100,6 @@ const NewChores = observer(class NewChores extends Component {
                   return <div className="chore-todo" key={task.id}>{task.name} - {task.schedule}</div>
                 })
               }
-              {
-                0 < suggestions.length ? (
-                  <div >
-                    <p>Suggestions</p>
-                    <div className="suggestions-container">{suggestions}</div>
-                  </div>
-                ) : null
-              }
-              <p>Or create your own chore:</p>
               <Input id="chore-name-input" placeholder="Chore Name"/>
               <Input id="chore-email-input" placeholder="Chore Description"
                 onKeyPress={this.onKeyPress(this.addChore)}
@@ -131,6 +122,14 @@ const NewChores = observer(class NewChores extends Component {
                 <Button stylename="button--call-to-action" onClick={this.addChore}> Add Chore +</Button>
                 <Button onClick={this.saveGroup}>Added All Chores ></Button>
               </div>
+              {
+                0 < suggestions.length ? (
+                  <div >
+                    <p>Suggestions</p>
+                    <div className="suggestions-container">{suggestions}</div>
+                  </div>
+                ) : null
+              }
             </div>
           </div>
         </div>
