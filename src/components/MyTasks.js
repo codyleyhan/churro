@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import Spinner from "react-spinkit";
-import Toggle from 'react-toggle';
 
 import TaskCard from "./TaskCard";
 import Button from "./Button";
