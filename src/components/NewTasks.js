@@ -4,6 +4,9 @@ import { observer } from "mobx-react";
 
 import Button from './Button';
 import Input from './Input';
+import HelpTool from "./HelpTool.js";
+import options from "./FrequencyOptions"
+import Select from 'react-select';
 
 import '../styles/Main.scss';
 import '../styles/NewGroup.scss';
@@ -44,6 +47,7 @@ const NewChores = observer(class NewChores extends Component {
 
     this.state = {
       suggestions: suggestedChores,
+      selectedOption: null,
     }
   } 
 
@@ -51,11 +55,10 @@ const NewChores = observer(class NewChores extends Component {
     let new_chore = {
       name: document.getElementById('chore-name-input').value,
       description: document.getElementById('chore-email-input').value,
-      frequency: document.getElementById('chore-frequency-input').value
+      frequency: this.state.selectedOption? this.state.selectedOption.value : options[0].value
     }
     document.getElementById('chore-name-input').value = '';
     document.getElementById('chore-email-input').value = '';
-    document.getElementById('chore-frequency-input').value = 'Daily';
     newGroupStore.addTask(new_chore.name, new_chore.description, new_chore.frequency);
   }
 
@@ -82,36 +85,49 @@ const NewChores = observer(class NewChores extends Component {
     });
   }
 
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+  }
+
   render() {
     const suggestions = this.state.suggestions.map((task, idx) => {
       return (
         <button key={idx} className="suggested-chores" onClick={this.onSuggestionClick(task, idx)}>{task.name}</button>
       );
     })
+    const selectedOption = this.state.selectedOption;
     return (
       <div className="Main">
         <div className="container">
           <div className="NewGroup">
             <div className="form roommates">
               <h4 className="form-title">{newGroupStore.name}</h4>
-              <span>What are the chores y'all have to do?</span>
+              <span>What are the chores y'all have to do? 
+                <HelpTool 
+                info="Add Chore name and description and press Add Chore.
+                You can also click on the suggested chores at the bottom.
+                Once you've added all chores, click on Added All Chores.
+                " 
+                />
+              </span>
+              <div className="chore-items-container">
               {
                 newGroupStore.tasks.map((task ) => { 
                   return <div className="chore-todo" key={task.id}>{task.name} - {task.schedule}</div>
                 })
               }
+              </div>
               <Input id="chore-name-input" placeholder="Chore Name"/>
               <Input id="chore-email-input" placeholder="Chore Description"
                 onKeyPress={this.onKeyPress(this.addChore)}
               />
-              <div style={{paddingTop: "25px"}}>Frequency:{" "}
-                <select id="chore-frequency-input" defaultValue="daily">
-                  <option value="Daily">Daily</option>
-                  <option value="Weekly">Weekly</option>
-                  <option value="Biweekly">Biweekly</option>
-                  <option value="Monthly">Monthly</option>
-                  <option value="As Needed">As Needed</option>
-                </select>
+              <div style={{paddingTop: "25px", width: "250px", fontSize: "12px"}}>
+                <Select
+                  value={selectedOption}
+                  onChange={this.handleChange}
+                  options={options}
+                  placeholder="Frequency"
+                />
               </div>
               <div>
                 <Link to={{ pathname: '/new', state: "roommates"}}>
@@ -126,7 +142,7 @@ const NewChores = observer(class NewChores extends Component {
                 0 < suggestions.length ? (
                   <div >
                     <p>Suggestions</p>
-                    <div className="suggestions-container">{suggestions}</div>
+                    <div className="chore-items-container">{suggestions}</div>
                   </div>
                 ) : null
               }
