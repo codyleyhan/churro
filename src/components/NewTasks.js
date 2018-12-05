@@ -10,7 +10,43 @@ import '../styles/NewGroup.scss';
 
 import newGroupStore from '../stores/newGroup';
 
+const suggestedChores = [
+  {
+    name: 'Do the dishes',
+    description: 'Don\'t forget to squeeze out the sponge after.',
+    frequency: 'Daily'
+  },
+  {
+    name: 'Take out the trash',
+    description: 'Put in a new bag too!',
+    frequency: 'As Needed'
+  },
+  {
+    name: 'Maintenance request',
+    description: 'Let everyone know afterwards',
+    frequency: 'As Needed'
+  },
+  {
+    name: 'Vaccum the floor',
+    description: 'Empty out the vaccum after too.',
+    frequency: 'Biweekly'
+  },
+  {
+    name: 'Sweep the floor',
+    description: 'Make sure to do a decent job.',
+    frequency: 'Biweekly'
+  },
+]
+
 const NewChores = observer(class NewChores extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      suggestions: suggestedChores,
+    }
+  } 
+
   addChore = () => {
     let new_chore = {
       name: document.getElementById('chore-name-input').value,
@@ -37,19 +73,42 @@ const NewChores = observer(class NewChores extends Component {
     }
   }
 
+  onSuggestionClick = (task, idx) => e => {
+    newGroupStore.addTask(task.name, task.description, task.frequency);
+    let newSuggestions = [...this.state.suggestions];
+    newSuggestions.splice(idx, 1);
+    this.setState({
+      suggestions: newSuggestions
+    });
+  }
+
   render() {
+    const suggestions = this.state.suggestions.map((task, idx) => {
+      return (
+        <button key={idx} className="suggested-chores" onClick={this.onSuggestionClick(task, idx)}>{task.name}</button>
+      );
+    })
     return (
       <div className="Main">
         <div className="container">
           <div className="NewGroup">
             <div className="form roommates">
               <h4 className="form-title">{newGroupStore.name}</h4>
-              <p>What are the chores y'all have to do?</p>
+              <span>What are the chores y'all have to do?</span>
               {
                 newGroupStore.tasks.map((task ) => { 
-                  return <div key={task.id}>{task.name} - {task.schedule}</div>
+                  return <div className="chore-todo" key={task.id}>{task.name} - {task.schedule}</div>
                 })
               }
+              {
+                0 < suggestions.length ? (
+                  <div >
+                    <p>Suggestions</p>
+                    <div className="suggestions-container">{suggestions}</div>
+                  </div>
+                ) : null
+              }
+              <p>Or create your own chore:</p>
               <Input id="chore-name-input" placeholder="Chore Name"/>
               <Input id="chore-email-input" placeholder="Chore Description"
                 onKeyPress={this.onKeyPress(this.addChore)}
@@ -64,6 +123,11 @@ const NewChores = observer(class NewChores extends Component {
                 </select>
               </div>
               <div>
+                <Link to={{ pathname: '/new', state: "roommates"}}>
+                  <Button
+                    stylename="button--back"
+                  />
+                </Link>
                 <Button stylename="button--call-to-action" onClick={this.addChore}> Add Chore +</Button>
                 <Button onClick={this.saveGroup}>Added All Chores ></Button>
               </div>

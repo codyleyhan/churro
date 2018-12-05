@@ -53,4 +53,12 @@
       top: 0;
     }
   }
+
+  &--leaderboard {
+    position: fixed;
+    right: 100px;
+    bottom: 36px;
+    font-weight: 700;
+    margin: 0;
+  }
 }

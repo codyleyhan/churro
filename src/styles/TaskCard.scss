@@ -10,37 +10,49 @@
   margin-bottom: 25px;
 
   .task-card-title {
-    width: 15%;
     display: flex;
     text-align: center;
     justify-content: center;
     flex-direction: column;
+    background-color: $purple;
+    padding: 20px;
+    color: $white;
+    border-radius: 20px 0 0 0;
   }
 
   .task-card-list {
     vertical-align:middle;
-    margin: 10px;
+    margin-top: 0;
     background-color: $white;
     box-shadow: $card-shadow;
     list-style-type: none;
-    padding: 20px;
-    width: 85%;
+    width: 90%;
     border-radius: 20px;
+    padding: 0;
   }
 
   .task-card-item {
-    margin: 12px 15px;
-    border-bottom: 1px solid transparentize($text-color, 0.8);
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid $grey;
+
+    &:last-child {
+      border-bottom: 0;
+    }
 
     .task-card-check {
       font-size: 2em;
       margin-right: 10px;
-      height: 2.5em;
       color: transparentize($text-color, 0.8)
     }
 
     .task-card-right {
-      float: right;
+      position: absolute;
+      right: 20px;
 
       i {
         font-size: 1.5em;

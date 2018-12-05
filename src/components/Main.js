@@ -4,8 +4,10 @@ import { observer } from "mobx-react";
 
 import CallToActionButton from './CallToActionButton';
 import Button from './Button';
+import NavBar from './NavBar';
 
 import userStore from '../stores/users';
+import churro from '../img/churro.svg'
 
 import '../styles/Main.scss';
 
@@ -21,6 +23,7 @@ const Main = observer(class Main extends Component {
       <div className="Main">
         <div className="container">
           <div id="landing">
+            <img className="landing-img" src={churro} />
             <h2 className="welcome-header">Welcome to Churro!</h2>
             <h4 className="welcome-subheader">The New Way to Manage Chores</h4>
             <div className="button-container">

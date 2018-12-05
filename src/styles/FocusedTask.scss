@@ -2,28 +2,27 @@
 
 .focused-task-card {
   width: 45%;
-  margin-left: 5%;
+  border-radius: 20px;
 
   .focused-task-content {
-    background-color: $grey;
     box-shadow: $card-shadow;
-    margin: 10px;
-    padding: 20px;
-
+    border-radius: 20px;
     h2 {
       margin-top: 0;
     }
 
     .focused-task-queue {
       list-style-type: none;
-      padding-left: 0;
-
+      padding: 0;
 
       .focused-task-queue-item {
-        margin: 0;
-        margin-bottom: 5px;
-        padding-bottom: 8px;
+        padding: 10px 25px;
+        border-radius: 0 20px 0 0;
         border-bottom: 1px solid transparentize($text-color, 0.8);
+        &:last-child {
+          border-bottom: 0;
+          padding-bottom: 20px;
+        }
       }
     }
 
@@ -36,6 +35,13 @@
       cursor: pointer;
     }
 
+    .focused-task-card-name {
+      padding: 10px 25px 1px 35px;
+      background-color: $red;
+      color: $white;
+      border-radius: 0 20px 0 0;
+    }
+
     .focused-task-close {
       text-align: right;
       font-size: 1.5em;
@@ -43,11 +49,14 @@
       margin-bottom: -1.5em;
       padding: 0;
 
-
       .focused-task-close-button {
-        color: $text-color;
+        color: $white;
         text-decoration: none;
       }
+    }
+
+    .focused-task-card-desc{
+      padding: 10px 20px 0 25px
     }
 
     .focused-task-button-complete {

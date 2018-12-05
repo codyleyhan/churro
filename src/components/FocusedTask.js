@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react"
 
 import groupStore from '../stores/groups';
 import userStore from '../stores/users';
@@ -25,14 +26,16 @@ const FocusedTask = ({ task, closeURL }) => {
     setTimeout(()=>{document.getElementById(task.name).style.top = "-50px";}, 2000);
   }
 
+  let random_churros = Math.floor(Math.random() * 100);
+
   return (
     <section className="focused-task-card">
-      <Notif id={task.name} notifText={task.name+" - Done!"}/>
+      <Notif id={task.name} notifText={task.name+" - Done! You earned " + random_churros + " churros!"}/>
       <div className="focused-task-content">
-        <div className="focused-task-close">
-          <Link className="focused-task-close-button" to={closeURL}>x</Link>
-        </div>
         <header className="focused-task-card-name"> 
+          <div className="focused-task-close">
+            <Link className="focused-task-close-button" to={closeURL}>x</Link>
+          </div>
           <h2>{task.name}</h2>
         </header>
         <p className="focused-task-card-desc">
@@ -53,4 +56,4 @@ const FocusedTask = ({ task, closeURL }) => {
   )
 }
 
-export default FocusedTask;
+export default observer(FocusedTask);

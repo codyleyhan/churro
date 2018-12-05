@@ -16,8 +16,9 @@ const Login = observer(class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      styles: {}
+      input: '',
+      styles: {},
+      validEmail: false,
     };
 
     this.onKeyPress = this.onKeyPress.bind(this);
@@ -33,20 +34,25 @@ const Login = observer(class Login extends Component {
 
   handleChange(e) {
     this.setState({
-      email: e.target.value,
+      input: e.target.value,
       styles: {}
     });
   }
 
   handleSubmit() {
-    if (this.state.email.trim() && this.emailRE.test(this.state.email)) {
-      userStore.setCurrentUser(this.state.email);
+    if (this.state.validEmail){
       let params = new URLSearchParams(this.props.location.search);
       const next = params.get('redirect') ? params.get('redirect') : '/groups';
       this.props.history.push(next);
+    } else if (this.state.input.trim() && this.emailRE.test(this.state.input)) {
+      userStore.setCurrentUser(this.state.input);
+      this.setState({
+        input: "",
+        validEmail: true,
+      })
     } else {
       this.setState({
-        email: this.state.email,
+        input: this.state.input,
         styles: {
           borderBottom: "3px solid #E00747"
         }
@@ -54,14 +60,32 @@ const Login = observer(class Login extends Component {
     }
   }
 
+  emailInput() {
+    return (
+      <span>
+        <p>What is your email?</p>
+        <Input id="group-name-input" style={this.state.styles} placeholder="Email" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+      </span>
+    );
+  }
+
+  passwordInput() {
+    return (
+      <span>
+        <p>What is your password?</p>
+        <Input id="group-name-input" placeholder="Password" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+      </span>
+    );
+  }
+
   render() {
+    let html = this.state.validEmail ? this.passwordInput() : this.emailInput();
     return (
       <div className="Main">
         <div className="container">
           <div className="NewGroup">
           <div className="form group-name">
-            <p>What is your email?</p>
-            <Input id="group-name-input" style={this.state.styles} placeholder="Email" value={this.state.value} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+            {html}
             <Button stylename="button--next" onClick={this.handleSubmit} />
           </div>
           </div>
