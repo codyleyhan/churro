@@ -71,7 +71,7 @@ class GroupStore {
       name,
       schedule,
       description,
-      currentQueue: this.shuffle(Object.keys(this.group.user_emails))
+      currentQueue: this.shuffle([...this.group.user_emails])
     }
 
     this.group.tasks.push(task);

@@ -6,7 +6,6 @@ import userStore from "../stores/users";
 
 import "../styles/NavBar.scss";
 
-
 const NavBar = () => {
   return (
     <Menu>
@@ -16,7 +15,14 @@ const NavBar = () => {
       <NavLink exact className="link" to={"/groups"}>
         GROUPS
       </NavLink>
-      <NavLink exact className="link" to={"/"} onClick={() => {userStore.logout()}}>
+      <NavLink
+        exact
+        className="link"
+        to={"/"}
+        onClick={() => {
+          userStore.logout();
+        }}
+      >
         LOGOUT
       </NavLink>
     </Menu>

@@ -29,7 +29,7 @@ const TaskCard = ({ tasks, title }) => {
           <span className="task-card-check"><i className="far fa-check-circle"></i></span>
           <span>{task.name}</span> 
           <span className="task-card-right">
-            <CircleInitials name={user.name} color={user.color} />
+            <CircleInitials name={user.name} color={user.color} alt={user.name} />
             <Link className="task-card-focus-button" to={"/groups/" + groupStore.group.id + "/tasks/" + task.id}><i className="fas fa-angle-right"></i></Link>
           </span>
       </li>

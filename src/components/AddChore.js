@@ -5,12 +5,23 @@ import NavBar from "./NavBar";
 import Input from "./Input";
 import Button from "./Button";
 import Notif from "./Notif";
+import options from "./FrequencyOptions"
+import Select from 'react-select';
 
 import "../styles/AddChore.scss";
 
 import groupStore from '../stores/groups';
 
 class AddChore extends Component {
+  state = {
+    selectedOption: null,
+  }
+
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  }
+
   handleComplete = () => {
     document.getElementById("add-chore-popup").style.top = 0;
     setTimeout(()=>{document.getElementById("add-chore-popup").style.top = "-50px";}, 3000);
@@ -20,17 +31,16 @@ class AddChore extends Component {
     let new_chore = {
       name: document.getElementById('task-name').value,
       description: document.getElementById('task-desc').value,
-      frequency: document.getElementById('task-freq').value
+      frequency: this.state.selectedOption? this.state.selectedOption.value : options[0].value
     }
     document.getElementById('task-name').value = '';
     document.getElementById('task-desc').value = '';
-    document.getElementById('task-freq').value = 'Daily';
-    console.log(new_chore);
     groupStore.addTask(new_chore.name, new_chore.description, new_chore.frequency);
     this.handleComplete();
   }
 
   render() {
+    const selectedOption = this.state.selectedOption;
     return (
       <div>
         <NavBar />
@@ -45,17 +55,19 @@ class AddChore extends Component {
             placeholder="Chore Description"
           />
           <br />
-          Frequency:{" "}
-          <select id="task-freq" defaultValue="daily">
-            <option value="Daily">Daily</option>
-            <option value="Weekly">Weekly</option>
-            <option value="Biweekly">Biweekly</option>
-            <option value="Monthly">Monthly</option>
-            <option value="As Needed">As Needed</option>
-          </select>
+          <div style={{width: "300px"}}>
+           <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={options}
+            placeholder="Frequency"
+            />
+          </div>
           <br />
-          <Button stylename="button--call-to-action" onClick={this.addChore}>Add Chore</Button>
-          <Button stylename="" onClick={() => this.props.history.goBack()}>Cancel</Button>
+          <div>
+            <Button stylename="button--call-to-action" onClick={this.addChore}>Add Chore</Button>
+            <Button stylename="" onClick={() => this.props.history.goBack()}>Cancel</Button>
+          </div>
         </div>
       </div>
     );

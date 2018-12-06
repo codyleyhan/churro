@@ -63,7 +63,7 @@ const Login = observer(class Login extends Component {
   emailInput() {
     return (
       <span>
-        <p>What is your email?</p>
+        <p>Hey there, what is your email?</p>
         <Input id="group-name-input" style={this.state.styles} placeholder="Email" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
       </span>
     );
@@ -72,8 +72,8 @@ const Login = observer(class Login extends Component {
   passwordInput() {
     return (
       <span>
-        <p>What is your password?</p>
-        <Input id="group-name-input" placeholder="Password" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
+        <p>And what's your password?</p>
+        <Input id="group-name-input" type="password" placeholder="Password" value={this.state.input} onChange={this.handleChange} onKeyPress={this.onKeyPress} />
       </span>
     );
   }
