@@ -54,6 +54,19 @@
     }
   }
 
+  &--delete {
+    padding: 10px 10px;
+    position: relative;
+    
+    &:before {
+      content: "x";
+      position: absolute;
+      font-size: 14px;
+      left: 30%;
+      top: 0;
+    }
+  }
+
   &--leaderboard {
     position: fixed;
     right: 100px;

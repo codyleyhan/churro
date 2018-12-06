@@ -37,6 +37,10 @@ class NewGroupStore {
     this.users[email] = user;
   }
 
+  removeUser(email) {
+    delete(this.users[email]);
+  }
+
   addTask(name, description, schedule) {
     const task = {
       id: Date.now(),

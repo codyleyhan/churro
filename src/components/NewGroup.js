@@ -34,6 +34,10 @@ const NewGroup = observer(class NewGroup extends Component {
     newGroupStore.addUser(new_roommate.name, new_roommate.email);
   };
 
+  removeRoommate = (email) => {
+    newGroupStore.removeUser(email);
+  };
+
   onKeyPress = fn => e => {
     if (e.key === 'Enter') {
       fn();
@@ -93,8 +97,16 @@ const NewGroup = observer(class NewGroup extends Component {
           <h4 className="form-title">{this.state.groupName}</h4>
           <p>Who are the roommates in this group?</p>
           {Object.values(newGroupStore.users).map(function(roommate, index) {
-            return <div key={index}>{roommate.name} - {roommate.email}</div>;
-          })}
+            return (
+              <div key={index}>
+                <span>{roommate.name} - {roommate.email}</span>
+                <Button
+                  stylename="button--delete"
+                  onClick={_this.removeRoommate(roommate.email)}
+                />
+              </div>
+              );
+          }, this)}
           <Input id="roommate-name-input" placeholder="Roommate Name" />
           <Input id="roommate-email-input" placeholder="Roommate Email" 
             onKeyPress={this.onKeyPress(_this.addRoommate)}
