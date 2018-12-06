@@ -46,6 +46,7 @@ const NewChores = observer(class NewChores extends Component {
     super(props);
 
     this.state = {
+      usedSuggestions: [],
       suggestions: suggestedChores,
       selectedOption: null,
     }
@@ -60,6 +61,24 @@ const NewChores = observer(class NewChores extends Component {
     document.getElementById('chore-name-input').value = '';
     document.getElementById('chore-email-input').value = '';
     newGroupStore.addTask(new_chore.name, new_chore.description, new_chore.frequency);
+  }
+
+  removeChore = (name, description, schedule) => e => {
+    let suggestions = this.state.suggestions;
+    let usedSuggestions = this.state.usedSuggestions;
+    for (let i = 0; i < usedSuggestions.length; i++) {
+      if (usedSuggestions[i].name == name && usedSuggestions[i].description == description 
+        && usedSuggestions[i].frequency == schedule) {
+        suggestions.push(usedSuggestions[i]);
+        usedSuggestions.splice(i, 1);
+        break;
+      }
+    }
+    newGroupStore.removeTask(name, schedule);
+    this.setState({
+      usedSuggestions: usedSuggestions,
+      suggestions: suggestions
+    });
   }
 
   saveGroup = () => {
@@ -79,8 +98,11 @@ const NewChores = observer(class NewChores extends Component {
   onSuggestionClick = (task, idx) => e => {
     newGroupStore.addTask(task.name, task.description, task.frequency);
     let newSuggestions = [...this.state.suggestions];
+    let usedSuggestions = this.state.usedSuggestions;
+    usedSuggestions.push(newSuggestions[idx]);
     newSuggestions.splice(idx, 1);
     this.setState({
+      usedSuggestions: usedSuggestions,
       suggestions: newSuggestions
     });
   }
@@ -113,7 +135,15 @@ const NewChores = observer(class NewChores extends Component {
               <div className="chore-items-container">
               {
                 newGroupStore.tasks.map((task ) => { 
-                  return <div className="chore-todo" key={task.id}>{task.name} - {task.schedule}</div>
+                  return (
+                    <div key={task.id}>
+                      <div className="chore-todo"><span>{task.name} - {task.schedule}</span>
+                      <Button
+                        stylename="button--delete"
+                        onClick={this.removeChore(task.name, task.description, task.schedule)}
+                      /></div>
+                    </div>
+                    );
                 })
               }
               </div>

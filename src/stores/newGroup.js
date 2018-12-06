@@ -53,6 +53,15 @@ class NewGroupStore {
     this.tasks.push(task);
   }
 
+  removeTask(name, schedule) {
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].name == name && this.tasks[i].schedule == schedule) {
+        this.tasks.splice(i, 1);
+        break;
+      }
+    }
+  }
+
   clear() {
     this.name = '';
     this.users = {};
