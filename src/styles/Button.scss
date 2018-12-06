@@ -55,13 +55,15 @@
   }
 
   &--delete {
-    padding: 10px 10px;
-    position: relative;
+    padding: 7px 7px;
+    margin: 0px 10px 0px 10px;
+    position: absolute;
+    display: inline-block;
     
     &:before {
       content: "x";
       position: absolute;
-      font-size: 14px;
+      font-size: 9px;
       left: 30%;
       top: 0;
     }

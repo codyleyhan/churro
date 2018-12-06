@@ -36,7 +36,7 @@ const NewGroup = observer(class NewGroup extends Component {
     newGroupStore.addUser(new_roommate.name, new_roommate.email);
   };
 
-  removeRoommate = (email) => {
+  removeRoommate = (email) => e => {
     newGroupStore.removeUser(email);
   };
 
@@ -110,8 +110,16 @@ const NewGroup = observer(class NewGroup extends Component {
           <div className="roommates-list-container">
           {
             Object.values(newGroupStore.users).map(function(roommate, index) {
-              return <div className="roommate-list-item" key={index}>{roommate.name} - {roommate.email}</div>;
-            })
+              return (
+                <div key={index}>
+                  <span className="roommate-list-item">{roommate.name} - {roommate.email}</span>
+                  <Button
+                    stylename="button--delete"
+                    onClick={this.removeRoommate(roommate.email)}
+                  />
+                </div>
+                );
+            }, this)
           }
           </div>
           <Input id="roommate-name-input" placeholder="Roommate Name" />
