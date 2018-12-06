@@ -1,17 +1,36 @@
 @import "fonts";
 @import "colors";
 
-.GroupList {
+.LeaderboardContainer {
   display: flex;
   flex-direction: column;
+  border-radius: 20px 20px 20px 20px;
+  box-shadow: $card-shadow;
+
+  .leaderboard-title {
+    display: flex;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $purple;
+    padding: 20px;
+    color: $white;
+    margin: 0;
+  }
 }
 
 .leaderboard-table {
   border-collapse: collapse;
   width: 400px;
+
   .leaderboard-row:nth-child(even) {
     background-color: $purple;
     color: $white;
+  }
+
+  .leaderboard-row:last-child {
+    border: 0;
   }
 
   th {
@@ -20,8 +39,6 @@
   }
 
   td {
-    border-bottom: 1px solid $grey;
     padding: 10px;
   }
-
 }

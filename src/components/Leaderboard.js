@@ -40,8 +40,8 @@ const Leaderboard = observer(class GroupList extends Component {
       });
     }
     content = (
-      <section className="GroupList">
-        <h1>Leaderboard</h1>
+      <section className="LeaderboardContainer">
+        <h1 className="leaderboard-title">Leaderboard</h1>
         <table className="leaderboard-table">
           <thead>
           <tr className="leaderboard-row">
