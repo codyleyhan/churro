@@ -6,6 +6,7 @@ import Spinner from 'react-spinkit';
 import userStore from '../stores/users';
 import groupStore from '../stores/groups';
 
+import Button from "./Button";
 import NavBar from "./NavBar";
 
 import '../styles/Main.scss';
@@ -59,6 +60,7 @@ const Leaderboard = observer(class GroupList extends Component {
           <div className="NewGroup">
           <div className="form group-name">
             {content}
+            <Button stylename="" onClick={() => this.props.history.goBack()}>Back</Button>
           </div>
           </div>
         </div>

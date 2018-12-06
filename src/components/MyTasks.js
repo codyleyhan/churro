@@ -101,7 +101,7 @@ const MyTasks = observer(
         <div>
           <NavBar />
           {content}
-          <Button stylename="button--leaderboard" style={{right: "230px"}} onClick={this.onToggleChange}>Show {!this.state.all ? "All" : "Just Yours"} Tasks</Button>
+          <Button stylename="button--leaderboard" style={{right: "230px"}} onClick={this.onToggleChange}>Show {!this.state.all ? "All" : "Just Your"} Tasks</Button>
           <Link to={"/groups/" + groupID + "/leaderboard"}>
             <Button stylename="button--leaderboard">Leaderboard</Button>
           </Link>
